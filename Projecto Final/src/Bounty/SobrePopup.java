@@ -39,6 +39,7 @@ public class SobrePopup extends JFrame {
 	 * Create the frame.
 	 */
 	public SobrePopup() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 218, 300);
 		contentPane = new JPanel();
@@ -52,7 +53,7 @@ public class SobrePopup extends JFrame {
 		lblUtilitarioBounty.setBounds(0, 0, 202, 65);
 		contentPane.add(lblUtilitarioBounty);
 		
-		JLabel lblProgramaRealisadoPor = new JLabel("Programa realisado por:");
+		JLabel lblProgramaRealisadoPor = new JLabel("Programa realizado por:");
 		lblProgramaRealisadoPor.setBounds(10, 65, 160, 14);
 		contentPane.add(lblProgramaRealisadoPor);
 		

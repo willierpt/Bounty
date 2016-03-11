@@ -21,6 +21,8 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
@@ -29,6 +31,8 @@ import javax.swing.JCheckBox;
 public class RelogioGraph extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textInsercao;
+	private JTextField textDone;
 	
 	
 	/**
@@ -179,6 +183,45 @@ public class RelogioGraph extends JFrame {
 		});
 		btnSobre.setBounds(16, 11, 89, 23);
 		contentPane.add(btnSobre);
+		
+		JTabbedPane tabTarefas = new JTabbedPane(JTabbedPane.TOP);
+		tabTarefas.setBounds(35, 135, 389, 125);
+		contentPane.add(tabTarefas);
+		
+		JPanel panelTarefas = new JPanel();
+		tabTarefas.addTab("Tarefas", null, panelTarefas, null);
+		panelTarefas.setLayout(null);
+		
+		JCheckBox chbxValidar = new JCheckBox("");
+		chbxValidar.setBounds(6, 10, 21, 23);
+		panelTarefas.add(chbxValidar);
+		
+		// teste
+		ArrayList<Tarefas> tarefas = new ArrayList<Tarefas>();
+		tarefas.add(new Tarefas(1,"Teste",false));
+		
+		
+		textInsercao = new JTextField();
+		textInsercao.setBounds(33, 10, 341, 20);
+		panelTarefas.add(textInsercao);
+		textInsercao.setColumns(10);
+		
+		JPanel panelDone = new JPanel();
+		tabTarefas.addTab("Done", null, panelDone, null);
+		panelDone.setLayout(null);
+		
+		JButton btnRemove = new JButton("");
+		btnRemove.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
+		btnRemove.setBounds(10, 0, 15, 17);
+		panelDone.add(btnRemove);
+		
+		textDone = new JTextField();
+		textDone.setEditable(false);
+		textDone.setBounds(28, 0, 346, 20);
+		panelDone.add(textDone);
+		textDone.setColumns(10);
+		
+		textDone.setText(tarefas.get(0).getTarefa());
 		
 
 		//actualiza o relogio //digital e analogico
