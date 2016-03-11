@@ -1,11 +1,14 @@
 package Bounty;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class BuscaHora {
 
+	
+	
 	public static void main(String[] args) {
 		System.out.print(getRelogio());
 	}
@@ -21,6 +24,23 @@ public class BuscaHora {
 		//log
 		//System.out.printf("%02d:%02d:%02d",hora,minuto,segundo);
 		//System.out.println(relogio);
+		return relogio;
+	}
+	
+	
+	public static String getRelogioFuso(String cidade, ArrayList<FusosHorarios> fusosHorarios){
+		int diferenca = 0;
+		for (int i = 0; i<fusosHorarios.size();i++){
+			if(cidade.equals(fusosHorarios.get(i).cidade)){
+				diferenca = fusosHorarios.get(i).diferencaHoraria;
+				break;
+			}
+		}
+		int hora = obtemHora() + diferenca;
+		int minuto = obtemMinuto();
+		int segundo = obtemSegundo();
+		
+		String relogio = String.format("%02d:%02d:%02d",hora,minuto,segundo);
 		return relogio;
 	}
 	

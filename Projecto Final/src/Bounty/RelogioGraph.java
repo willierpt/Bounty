@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 
 
 public class RelogioGraph extends JFrame {
@@ -54,65 +55,21 @@ public class RelogioGraph extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public RelogioGraph() {
 		setResizable(false);
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 651, 444);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		/*Relogio Digital*/
-		JLabel relogioDigital = new JLabel(BuscaHora.getRelogio());
-		relogioDigital.setHorizontalAlignment(SwingConstants.CENTER);
-		relogioDigital.setFont(new Font("Tahoma", Font.BOLD, 40));
-		relogioDigital.setBounds(115, 11, 210, 100);
-
-		contentPane.add(relogioDigital);
-
-		/*Relogio Analogico*/
-		JPanel relogioAnalogPanel = new JPanel(){
-			@Override
-			//desenha o relogio (ponteiros sao desenhados no Jpanel ponteiros)
-			protected void paintComponent(Graphics relogioAnalog) {
-				super.paintComponent(relogioAnalog);
-
-				Graphics2D g2d = (Graphics2D) relogioAnalog;
-				//Circulo
-				g2d.drawOval(0,0,100,100);
-				//Tracinhos das Horas
-				g2d.drawLine(50, 0, 50, 5); //12
-				g2d.drawLine(95, 50, 100, 50); //3
-				g2d.drawLine(50, 95, 50, 100); //6
-				g2d.drawLine(0, 50, 5, 50); //9
-
-			}
-		};
-
-		relogioAnalogPanel.setBounds(170, 10, 101, 101);
-		contentPane.add(relogioAnalogPanel);
-		relogioAnalogPanel.setLayout(null);
-
-		JLabel hora12 = new JLabel("12");
-		hora12.setBounds(43, 8, 22, 14);
-		relogioAnalogPanel.add(hora12);
-
-		JLabel hora3 = new JLabel("3");
-		hora3.setBounds(85, 43, 12, 14);
-		relogioAnalogPanel.add(hora3);
-
-		JLabel hora9 = new JLabel("9");
-		hora9.setBounds(10, 43, 22, 14);
-		relogioAnalogPanel.add(hora9);
-
-		JLabel hora6 = new JLabel("6");
-		hora6.setBounds(48, 75, 12, 14);
-		relogioAnalogPanel.add(hora6);
 		
-		JPanel ponteiros = new JPanel(){
+		
+		JPanel ponteirosLisboa = new JPanel(){
 			@Override
 			//Desenha os ponteiros
 			protected void paintComponent(Graphics relogioAnalog) {
@@ -137,43 +94,49 @@ public class RelogioGraph extends JFrame {
 
 			}
 		};
-		ponteiros.setOpaque(false);
-		ponteiros.setBounds(0, 0, 100, 100);
-		relogioAnalogPanel.add(ponteiros);
+		ponteirosLisboa.setBounds(51, 128, 100, 100);
+		contentPane.add(ponteirosLisboa);
+		ponteirosLisboa.setOpaque(false);
 
-		relogioAnalogPanel.setVisible(false);
-		//butão para trocar de analogio para digital e vice versa
-		JButton trocaRelogio = new JButton("");
-		trocaRelogio.setIcon(new ImageIcon(RelogioGraph.class.getResource("/Bounty/resources/iconrelogio2.jpg")));
-		
-		trocaRelogio.setToolTipText("Trocar Entre Relogio Digital/Analogico");
-
-		trocaRelogio.setBounds(335, 51, 89, 23);
-		trocaRelogio.addMouseListener(new MouseAdapter() {
-			boolean on = false;
-
+		/*Relogio Analogico*/
+		JPanel relogioAnalogPanel = new JPanel(){
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			//desenha o relogio (ponteiros sao desenhados no Jpanel ponteiros)
+			protected void paintComponent(Graphics relogioAnalog) {
+				super.paintComponent(relogioAnalog);
 
-				if (!on) {
-					relogioAnalogPanel.setVisible(true);
-					relogioDigital.setVisible(false);
-					on = true;
-				}
-				else  {			    	
-					relogioAnalogPanel.setVisible(false);
-					relogioDigital.setVisible(true);
-					on = false;
-				}	
+				Graphics2D g2d = (Graphics2D) relogioAnalog;
+				//Circulo
+				g2d.drawOval(0,0,100,100);
+				//Tracinhos das Horas
+				g2d.drawLine(50, 0, 50, 5); //12
+				g2d.drawLine(95, 50, 100, 50); //3
+				g2d.drawLine(50, 95, 50, 100); //6
+				g2d.drawLine(0, 50, 5, 50); //9
 
 			}
-		});
-		trocaRelogio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		contentPane.add(trocaRelogio);
-		
+		};
+
+		relogioAnalogPanel.setBounds(50, 127, 101, 101);
+		contentPane.add(relogioAnalogPanel);
+		relogioAnalogPanel.setLayout(null);
+
+		JLabel hora12 = new JLabel("12");
+		hora12.setBounds(43, 8, 22, 14);
+		relogioAnalogPanel.add(hora12);
+
+		JLabel hora3 = new JLabel("3");
+		hora3.setBounds(85, 43, 12, 14);
+		relogioAnalogPanel.add(hora3);
+
+		JLabel hora9 = new JLabel("9");
+		hora9.setBounds(10, 43, 22, 14);
+		relogioAnalogPanel.add(hora9);
+
+		JLabel hora6 = new JLabel("6");
+		hora6.setBounds(48, 75, 12, 14);
+		relogioAnalogPanel.add(hora6);
+
 		JButton btnSobre = new JButton("Sobre");
 		btnSobre.addMouseListener(new MouseAdapter() {
 			@Override
@@ -181,11 +144,17 @@ public class RelogioGraph extends JFrame {
 				SobrePopup.main(null);
 			}
 		});
-		btnSobre.setBounds(16, 11, 89, 23);
+		JLabel relogioDigitalLisboa = new JLabel(BuscaHora.getRelogio());
+		relogioDigitalLisboa.setHorizontalAlignment(SwingConstants.CENTER);
+		relogioDigitalLisboa.setFont(new Font("Tahoma", Font.BOLD, 40));
+		relogioDigitalLisboa.setBounds(10, 48, 187, 88);
+		
+		contentPane.add(relogioDigitalLisboa);
+		btnSobre.setBounds(546, 11, 89, 23);
 		contentPane.add(btnSobre);
 		
 		JTabbedPane tabTarefas = new JTabbedPane(JTabbedPane.TOP);
-		tabTarefas.setBounds(35, 135, 389, 125);
+		tabTarefas.setBounds(24, 279, 600, 125);
 		contentPane.add(tabTarefas);
 		
 		JPanel panelTarefas = new JPanel();
@@ -223,13 +192,55 @@ public class RelogioGraph extends JFrame {
 		
 		textDone.setText(tarefas.get(0).getTarefa());
 		
+		JLabel lblLisboa = new JLabel("Lisboa");
+		lblLisboa.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblLisboa.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLisboa.setBounds(43, 15, 114, 23);
+		contentPane.add(lblLisboa);
+		
+		//relogio digital Fuso
+				JLabel relogioDigitalFuso = new JLabel(BuscaHora.getRelogio());
+				relogioDigitalFuso.setHorizontalAlignment(SwingConstants.CENTER);
+				relogioDigitalFuso.setFont(new Font("Tahoma", Font.BOLD, 40));
+				relogioDigitalFuso.setBounds(261, 48, 187, 88);
+				
+				contentPane.add(relogioDigitalFuso);
+				btnSobre.setBounds(546, 11, 89, 23);
+		
+		
+		JComboBox fusoSelector = new JComboBox();
+		
+		fusoSelector.setBounds(290, 17, 143, 20);
+		contentPane.add(fusoSelector);
+		ArrayList<FusosHorarios> fusosHorarios = new ArrayList<FusosHorarios>();
+		fusosHorarios.add(new FusosHorarios("Lisboa",0));
+		fusosHorarios.add(new FusosHorarios("Tokio",10));
+		fusosHorarios.add(new FusosHorarios("New York",-5));
+		
+		for (int i = 0; i < fusosHorarios.size();i++){
+			fusoSelector.addItem(fusosHorarios.get(i).cidade);
+		}
+		
+		/*fusoSelector.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+			String nomeDaCidade;
+			nomeDaCidade = fusoSelector.getSelectedItem().toString();
+			relogioDigitalFuso.setText(BuscaHora.getRelogioFuso(nomeDaCidade, fusosHorarios));
+			}
+		});*/
+		
+
 
 		//actualiza o relogio //digital e analogico
 		ActionListener updateClock = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				//...Tarefas a executar...
-				relogioDigital.setText(BuscaHora.getRelogio());
-				ponteiros.repaint();
+				relogioDigitalLisboa.setText(BuscaHora.getRelogio());
+				ponteirosLisboa.repaint();
+				String nomeDaCidade;
+				nomeDaCidade = fusoSelector.getSelectedItem().toString();
+				relogioDigitalFuso.setText(BuscaHora.getRelogioFuso(nomeDaCidade, fusosHorarios));
 			}
 		};
 		Timer t = new Timer(1000,updateClock);
