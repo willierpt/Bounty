@@ -10,7 +10,13 @@ public class BuscaHora {
 	
 	
 	public static void main(String[] args) {
-		System.out.print(getRelogio());
+		//System.out.print(getRelogio());
+		ArrayList<FusosHorarios> fusosHorarios = new ArrayList<FusosHorarios>();
+		fusosHorarios.add(new FusosHorarios("Lisboa",0));
+		fusosHorarios.add(new FusosHorarios("Tokio",10));
+		fusosHorarios.add(new FusosHorarios("New York",-5));
+		fusosHorarios.add(new FusosHorarios("Açores",-1));
+		getRelogioFuso("Tokio",fusosHorarios);
 	}
 
 	public static String getRelogio(){
@@ -28,8 +34,14 @@ public class BuscaHora {
 	}
 	
 	
-	public static String getRelogioFuso(String cidade, ArrayList<FusosHorarios> fusosHorarios){
+	
+	public static String getRelogioFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
 		int diferenca = 0;
+		
+		
+
+		//diferenca = fusosHorarios.get(fusosHorarios.indexOf(cidade)).diferencaHoraria;
+		
 		for (int i = 0; i<fusosHorarios.size();i++){
 			if(cidade.equals(fusosHorarios.get(i).cidade)){
 				diferenca = fusosHorarios.get(i).diferencaHoraria;
@@ -37,6 +49,12 @@ public class BuscaHora {
 			}
 		}
 		int hora = obtemHora() + diferenca;
+		if (hora >= 24){
+			hora-=24;
+		}
+		if (hora<0){
+			hora = 24 + diferenca;
+		}
 		int minuto = obtemMinuto();
 		int segundo = obtemSegundo();
 		

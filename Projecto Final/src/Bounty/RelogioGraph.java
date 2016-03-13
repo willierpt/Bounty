@@ -216,6 +216,7 @@ public class RelogioGraph extends JFrame {
 		fusosHorarios.add(new FusosHorarios("Lisboa",0));
 		fusosHorarios.add(new FusosHorarios("Tokio",10));
 		fusosHorarios.add(new FusosHorarios("New York",-5));
+		fusosHorarios.add(new FusosHorarios("Açores",-1));
 		
 		for (int i = 0; i < fusosHorarios.size();i++){
 			fusoSelector.addItem(fusosHorarios.get(i).cidade);
