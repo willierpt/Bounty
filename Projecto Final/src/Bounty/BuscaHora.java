@@ -7,8 +7,8 @@ import java.util.GregorianCalendar;
 
 public class BuscaHora {
 
-	
-	
+
+
 	public static void main(String[] args) {
 		//System.out.print(getRelogio());
 		ArrayList<FusosHorarios> fusosHorarios = new ArrayList<FusosHorarios>();
@@ -26,22 +26,22 @@ public class BuscaHora {
 		segundo = obtemSegundo();
 		String relogio = String.format("%02d:%02d:%02d",hora,minuto,segundo);
 		//String relogio = hora+":"+minuto+":"+segundo;
-		
+
 		//log
 		//System.out.printf("%02d:%02d:%02d",hora,minuto,segundo);
 		//System.out.println(relogio);
 		return relogio;
 	}
-	
-	
-	
+
+
+
 	public static String getRelogioFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
 		int diferenca = 0;
-		
-		
+
+
 
 		//diferenca = fusosHorarios.get(fusosHorarios.indexOf(cidade)).diferencaHoraria;
-		
+
 		for (int i = 0; i<fusosHorarios.size();i++){
 			if(cidade.equals(fusosHorarios.get(i).cidade)){
 				diferenca = fusosHorarios.get(i).diferencaHoraria;
@@ -57,11 +57,11 @@ public class BuscaHora {
 		}
 		int minuto = obtemMinuto();
 		int segundo = obtemSegundo();
-		
+
 		String relogio = String.format("%02d:%02d:%02d",hora,minuto,segundo);
 		return relogio;
 	}
-	
+
 	public static int obtemHora(){
 		int hora;
 		Date data = new Date();
@@ -86,7 +86,7 @@ public class BuscaHora {
 		sec = calendar.get(Calendar.SECOND);
 		return sec;
 	}
-	
-	
-	
+
+
+
 }
