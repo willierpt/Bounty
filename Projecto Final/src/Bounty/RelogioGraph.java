@@ -9,6 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectStreamException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -82,7 +87,7 @@ public class RelogioGraph extends JFrame {
 
 		JComboBox fusoSelector = fillFusoSelectorOptions();
 		contentPane.add(fusoSelector);
-		
+
 		JPanel ponteirosFuso = desenhaPonteirosFuso(fusoSelector);
 		contentPane.add(ponteirosFuso);
 		/**/
@@ -124,7 +129,7 @@ public class RelogioGraph extends JFrame {
 		tarefas.add(new Tarefas("Teste1",false));
 		tarefas.add(new Tarefas("Teste2",false));
 
-		
+
 		JButton btnSave = new JButton("");
 		btnSave.addMouseListener(new MouseAdapter() {
 			String tarefa;
@@ -142,26 +147,26 @@ public class RelogioGraph extends JFrame {
 		textInsercao.setBounds(33, 10, 484, 20);
 		panelTarefas.add(textInsercao);
 		textInsercao.setColumns(10);
-		
+
 		textTarefa1 = new JTextField();
 		textTarefa1.setColumns(10);
 		textTarefa1.setBounds(33, 41, 484, 20);
 		panelTarefas.add(textTarefa1);
-		
+
 		textTarefa2 = new JTextField();
 		textTarefa2.setColumns(10);
 		textTarefa2.setBounds(33, 66, 484, 20);
 		panelTarefas.add(textTarefa2);
-		
+
 		/*for (int i = 0; i < tarefas.size(); i++) {
 			textTarefa1.setText(tarefas.get(tarefas.indexOf(i)).getTarefa());
 			textTarefa2.setText(tarefas.get(tarefas.indexOf(i)).getTarefa());
 		}*/
-		
+
 		JCheckBox chbxValidar1 = new JCheckBox("");
 		chbxValidar1.setBounds(6, 40, 21, 23);
 		panelTarefas.add(chbxValidar1);
-		
+
 		JCheckBox chbxValidar2 = new JCheckBox("");
 		chbxValidar2.setBounds(6, 65, 21, 23);
 		panelTarefas.add(chbxValidar2);
@@ -180,30 +185,30 @@ public class RelogioGraph extends JFrame {
 		textDone.setBounds(28, 0, 557, 20);
 		panelDone.add(textDone);
 		textDone.setColumns(10);		
-		
+
 		textDone1 = new JTextField();
 		textDone1.setText((String) null);
 		textDone1.setEditable(false);
 		textDone1.setColumns(10);
 		textDone1.setBounds(28, 31, 557, 20);
 		panelDone.add(textDone1);
-		
+
 		textDone2 = new JTextField();
 		textDone2.setText((String) null);
 		textDone2.setEditable(false);
 		textDone2.setColumns(10);
 		textDone2.setBounds(28, 62, 557, 20);
 		panelDone.add(textDone2);
-		
+
 		textDone.setText(tarefas.get(0).getTarefa());
 		textDone1.setText(tarefas.get(1).getTarefa());
 		textDone2.setText(tarefas.get(2).getTarefa());
-		
+
 		JButton btnRemove1 = new JButton("");
 		btnRemove1.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 		btnRemove1.setBounds(10, 30, 15, 17);
 		panelDone.add(btnRemove1);
-		
+
 		JButton btnRemove2 = new JButton("");
 		btnRemove2.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 		btnRemove2.setBounds(10, 61, 15, 17);
@@ -254,18 +259,18 @@ public class RelogioGraph extends JFrame {
 		};
 		relogioAnalogPanel.setBounds(50, 127, 101, 101);
 		relogioAnalogPanel.setLayout(null);
-		
+
 		JLabel hora12 = new JLabel("12");
 		hora12.setBounds(43, 8, 22, 14);
-		
+
 
 		JLabel hora3 = new JLabel("3");
 		hora3.setBounds(85, 43, 12, 14);
-		
+
 
 		JLabel hora9 = new JLabel("9");
 		hora9.setBounds(10, 43, 22, 14);
-		
+
 
 		JLabel hora6 = new JLabel("6");
 		hora6.setBounds(48, 75, 12, 14);
@@ -277,7 +282,7 @@ public class RelogioGraph extends JFrame {
 		relogioAnalogPanel.add(hora6);
 		contentPane.add(relogioAnalogPanel);
 		adicionaBotaoSobre();
-		
+
 		JPanel relogioAnalogFuso = new JPanel(){
 			@Override
 			//desenha o relogio (ponteiros sao desenhados no Jpanel ponteiros)
@@ -299,28 +304,28 @@ public class RelogioGraph extends JFrame {
 		relogioAnalogFuso.setBounds(307, 127, 101, 101);
 		relogioAnalogFuso.setLayout(null);
 		relogioAnalogFuso.setOpaque(false);
-		
+
 		JLabel hora12f = new JLabel("12");
 		hora12f.setBounds(43, 8, 22, 14);
-		
+
 
 		JLabel hora3f = new JLabel("3");
 		hora3f.setBounds(85, 43, 12, 14);
-		
+
 
 		JLabel hora9f = new JLabel("9");
 		hora9f.setBounds(10, 43, 22, 14);
-		
+
 
 		JLabel hora6f = new JLabel("6");
 		hora6f.setBounds(48, 75, 12, 14);
-		
+
 		relogioAnalogFuso.add(hora12f);
 		relogioAnalogFuso.add(hora3f);
 		relogioAnalogFuso.add(hora9f);
 		relogioAnalogFuso.add(hora6f);
 		contentPane.add(relogioAnalogFuso);
-		
+
 	}
 
 	public JLabel desenhaRelogioDigitalLisboa(){
@@ -373,7 +378,7 @@ public class RelogioGraph extends JFrame {
 		ponteirosfuso.setOpaque(false);
 		return ponteirosfuso;
 	}
-	
+
 	public JPanel desenhaPonteirosLisboa(){
 		JPanel ponteirosLisboa = new JPanel(){
 			@Override
@@ -412,7 +417,6 @@ public class RelogioGraph extends JFrame {
 		fusoSelector.setBounds(290, 17, 143, 20);
 
 		FusosHorarios.listaFusos();
-
 
 		for (int i = 0; i < FusosHorarios.fusosHorarios.size();i++){
 			fusoSelector.addItem(FusosHorarios.fusosHorarios.get(i).cidade);

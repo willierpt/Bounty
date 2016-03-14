@@ -29,8 +29,8 @@ public class Ponteiros {
 		return (int)(Math.abs(raio*(Math.sin(graus * (Math.PI / 180))) + centroY));
 	}
 
-	public static int getGrausFromHoraFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
-		int hora = BuscaHora.getHoraFuso(cidade, fusosHorarios);
+	public static int getGrausFromHoraFuso(Object cidade, ArrayList<FusosHorarios> fusos){
+		int hora = BuscaHora.getHoraFuso(cidade, fusos);
 		int minuto = BuscaHora.obtemMinuto();
 		if (hora > 12){
 			hora -= 12;
