@@ -1,5 +1,6 @@
 package Bounty;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ponteiros {
@@ -28,7 +29,14 @@ public class Ponteiros {
 		return (int)(Math.abs(raio*(Math.sin(graus * (Math.PI / 180))) + centroY));
 	}
 
-
+	public static int getGrausFromHoraFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
+		int hora = BuscaHora.getHoraFuso(cidade, fusosHorarios);
+		int minuto = BuscaHora.obtemMinuto();
+		if (hora > 12){
+			hora -= 12;
+		}
+		return (int) ((-1*(30*hora+0.5*minuto))+90);
+	}
 
 	public static int getGrausFromHora(){
 		int hora = BuscaHora.obtemHora();

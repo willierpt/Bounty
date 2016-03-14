@@ -22,12 +22,12 @@ public class FusosHorarios {
 		this.diferencaHoraria = diferencaHoraria;
 	}
 
-	public String getCidade(){
+	/*public String getCidade(){
 		return cidade;
 	}
 	public int getDiferencaHoraria(){
 		return diferencaHoraria;
-	}
+	}*/
 
 	public ArrayList<FusosHorarios> getListaFusos(){
 		return fusosHorarios;

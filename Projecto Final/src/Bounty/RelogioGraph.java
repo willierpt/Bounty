@@ -78,6 +78,9 @@ public class RelogioGraph extends JFrame {
 
 		JComboBox fusoSelector = fillFusoSelectorOptions();
 		contentPane.add(fusoSelector);
+		
+		JPanel ponteirosFuso = desenhaPonteirosFuso(fusoSelector);
+		contentPane.add(ponteirosFuso);
 		/**/
 
 		/*Actualiza Ponteiros
@@ -88,6 +91,7 @@ public class RelogioGraph extends JFrame {
 				//...Tarefas a executar...
 				relogioDigitalLisboa.setText(BuscaHora.getRelogio());
 				ponteirosLisboa.repaint();
+				ponteirosFuso.repaint();
 				String nomeDaCidade;
 				nomeDaCidade = fusoSelector.getSelectedItem().toString();
 				relogioDigitalFuso.setText(BuscaHora.getRelogioFuso(nomeDaCidade, FusosHorarios.fusosHorarios));
@@ -136,12 +140,6 @@ public class RelogioGraph extends JFrame {
 		textDone.setColumns(10);
 
 		textDone.setText(tarefas.get(0).getTarefa());
-
-
-
-
-
-
 
 	}
 
@@ -274,6 +272,40 @@ public class RelogioGraph extends JFrame {
 	}
 
 
+	public JPanel desenhaPonteirosFuso(JComboBox fusoSelector){
+		JPanel ponteirosfuso = new JPanel(){
+			@Override
+			//Desenha os ponteiros
+			protected void paintComponent(Graphics relogioAnalog) {
+				super.paintComponent(relogioAnalog);
+
+				Graphics2D g2d = (Graphics2D) relogioAnalog;
+				int grau;
+
+				/* Função getCoord
+				 * Ponteiros.getCoordPonteiro(graus, raio, centroX, centroY)
+				 * */
+
+				/*draw Horas*/
+				grau = Ponteiros.getGrausFromHoraFuso(fusoSelector.getSelectedItem().toString(), FusosHorarios.fusosHorarios);
+
+				g2d.drawLine(50, 50, Ponteiros.getCoordXfromGraus(grau, 20, 50), Ponteiros.getCoordYfromGraus(grau, 25, -50));
+
+				/*draw Minutos*/
+				grau = Ponteiros.getGrausFromMinuto();
+				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 35, 50),(Ponteiros.getCoordYfromGraus(grau, 35, -50)));
+
+				/*draw Segundos*/
+				grau= Ponteiros.getGrausFromSegundo();
+				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 40, 50),(Ponteiros.getCoordYfromGraus(grau, 40, -50)));
+
+			}
+		};
+		ponteirosfuso.setBounds(307, 128, 100, 100);
+		ponteirosfuso.setOpaque(false);
+		return ponteirosfuso;
+	}
+	
 	public JPanel desenhaPonteirosLisboa(){
 		JPanel ponteirosLisboa = new JPanel(){
 			@Override
