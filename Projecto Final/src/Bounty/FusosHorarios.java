@@ -28,6 +28,7 @@ public class FusosHorarios implements Serializable {
 		
 	}
 
+	//stackoverflow.com/questions/16111496
 	/*@SuppressWarnings("unchecked")
 	public static void listaFusos() throws IOException, ClassNotFoundException{
 		FileInputStream fis;
