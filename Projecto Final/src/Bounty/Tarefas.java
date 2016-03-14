@@ -14,12 +14,12 @@ public class Tarefas {
 		return done;
 	}
 
-	public int getIndex() {
+	/*public int getIndex() {
 		return index;
-	}
+	}*/
 
-	public Tarefas(int index, String tarefa, boolean done) {
-		this.index = index;
+	public Tarefas(String tarefa, boolean done) {
+		//this.index = index;
 		this.tarefa = tarefa;
 		this.done = done;
 	}

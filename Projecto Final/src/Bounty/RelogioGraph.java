@@ -30,6 +30,10 @@ public class RelogioGraph extends JFrame {
 	private JPanel contentPane;
 	private JTextField textInsercao;
 	private JTextField textDone;
+	private JTextField textTarefa1;
+	private JTextField textTarefa2;
+	private JTextField textDone1;
+	private JTextField textDone2;
 
 
 	/**
@@ -116,13 +120,51 @@ public class RelogioGraph extends JFrame {
 
 		// teste
 		ArrayList<Tarefas> tarefas = new ArrayList<Tarefas>();
-		tarefas.add(new Tarefas(1,"Teste",false));
+		tarefas.add(new Tarefas("Teste",false));
+		tarefas.add(new Tarefas("Teste1",false));
+		tarefas.add(new Tarefas("Teste2",false));
 
+		
+		JButton btnSave = new JButton("");
+		btnSave.addMouseListener(new MouseAdapter() {
+			String tarefa;
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				textInsercao.setText(tarefa);
+				tarefas.add(new Tarefas(tarefa,false));
+			}
+		});
+		btnSave.setIcon(new ImageIcon(RelogioGraph.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
+		btnSave.setBounds(527, 38, 58, 23);
+		panelTarefas.add(btnSave);
 
 		textInsercao = new JTextField();
-		textInsercao.setBounds(33, 10, 341, 20);
+		textInsercao.setBounds(33, 10, 484, 20);
 		panelTarefas.add(textInsercao);
 		textInsercao.setColumns(10);
+		
+		textTarefa1 = new JTextField();
+		textTarefa1.setColumns(10);
+		textTarefa1.setBounds(33, 41, 484, 20);
+		panelTarefas.add(textTarefa1);
+		
+		textTarefa2 = new JTextField();
+		textTarefa2.setColumns(10);
+		textTarefa2.setBounds(33, 66, 484, 20);
+		panelTarefas.add(textTarefa2);
+		
+		/*for (int i = 0; i < tarefas.size(); i++) {
+			textTarefa1.setText(tarefas.get(tarefas.indexOf(i)).getTarefa());
+			textTarefa2.setText(tarefas.get(tarefas.indexOf(i)).getTarefa());
+		}*/
+		
+		JCheckBox chbxValidar1 = new JCheckBox("");
+		chbxValidar1.setBounds(6, 40, 21, 23);
+		panelTarefas.add(chbxValidar1);
+		
+		JCheckBox chbxValidar2 = new JCheckBox("");
+		chbxValidar2.setBounds(6, 65, 21, 23);
+		panelTarefas.add(chbxValidar2);
 
 		JPanel panelDone = new JPanel();
 		tabTarefas.addTab("Done", null, panelDone, null);
@@ -135,11 +177,37 @@ public class RelogioGraph extends JFrame {
 
 		textDone = new JTextField();
 		textDone.setEditable(false);
-		textDone.setBounds(28, 0, 346, 20);
+		textDone.setBounds(28, 0, 557, 20);
 		panelDone.add(textDone);
-		textDone.setColumns(10);
-
+		textDone.setColumns(10);		
+		
+		textDone1 = new JTextField();
+		textDone1.setText((String) null);
+		textDone1.setEditable(false);
+		textDone1.setColumns(10);
+		textDone1.setBounds(28, 31, 557, 20);
+		panelDone.add(textDone1);
+		
+		textDone2 = new JTextField();
+		textDone2.setText((String) null);
+		textDone2.setEditable(false);
+		textDone2.setColumns(10);
+		textDone2.setBounds(28, 62, 557, 20);
+		panelDone.add(textDone2);
+		
 		textDone.setText(tarefas.get(0).getTarefa());
+		textDone1.setText(tarefas.get(1).getTarefa());
+		textDone2.setText(tarefas.get(2).getTarefa());
+		
+		JButton btnRemove1 = new JButton("");
+		btnRemove1.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
+		btnRemove1.setBounds(10, 30, 15, 17);
+		panelDone.add(btnRemove1);
+		
+		JButton btnRemove2 = new JButton("");
+		btnRemove2.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
+		btnRemove2.setBounds(10, 61, 15, 17);
+		panelDone.add(btnRemove2);
 
 	}
 
