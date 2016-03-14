@@ -2,31 +2,27 @@ package Bounty;
 
 
 import java.awt.EventQueue;
-
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-
-import javax.swing.SwingConstants;
-import javax.swing.Timer;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JTabbedPane;
-import javax.swing.JTextField;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 
 public class RelogioGraph extends JFrame {
@@ -55,43 +51,51 @@ public class RelogioGraph extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("unchecked")
 	public RelogioGraph() {
-		setResizable(false);
-
 		/*Janela*/
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 651, 444);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		/**/
 
+		/*Desenha Elementos Fixos
+		 * e
+		 *Adiciona Elementos que vão actualizar*/
+		desenhaElementos();
 
-		/*Desenha os Ponteiros no relogio Analogico "relogioAnalogPanel"*/
 		JPanel ponteirosLisboa = desenhaPonteirosLisboa();
 		contentPane.add(ponteirosLisboa);
 
+		JLabel relogioDigitalFuso = desenhaRelogioDigitalFuso();
+		contentPane.add(relogioDigitalFuso);
 
-		/*Relogio Analogico*/
-		JPanel relogioAnalogPanel = desenhaRelogioAnalogicoLisboa();
-		contentPane.add(relogioAnalogPanel);
-
-
-
-		JLabel lblLisboa = new JLabel("Lisboa");
-		lblLisboa.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblLisboa.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLisboa.setBounds(43, 15, 114, 23);
-		contentPane.add(lblLisboa);
-
-		JLabel relogioDigitalLisboa = new JLabel(BuscaHora.getRelogio());
-		relogioDigitalLisboa.setHorizontalAlignment(SwingConstants.CENTER);
-		relogioDigitalLisboa.setFont(new Font("Tahoma", Font.BOLD, 40));
-		relogioDigitalLisboa.setBounds(10, 48, 187, 88);
-
+		JLabel relogioDigitalLisboa = desenhaRelogioDigitalLisboa();
 		contentPane.add(relogioDigitalLisboa);
 
+		JComboBox fusoSelector = fillFusoSelectorOptions();
+		contentPane.add(fusoSelector);
+		/**/
+
+		/*Actualiza Ponteiros
+		 * e
+		 * JLabels*/
+		ActionListener updateClock = new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				//...Tarefas a executar...
+				relogioDigitalLisboa.setText(BuscaHora.getRelogio());
+				ponteirosLisboa.repaint();
+				String nomeDaCidade;
+				nomeDaCidade = fusoSelector.getSelectedItem().toString();
+				relogioDigitalFuso.setText(BuscaHora.getRelogioFuso(nomeDaCidade, FusosHorarios.fusosHorarios));
+			}
+		};
+		Timer t = new Timer(1000,updateClock);
+		t.start();
+		/**/
 
 
 		JTabbedPane tabTarefas = new JTabbedPane(JTabbedPane.TOP);
@@ -135,20 +139,15 @@ public class RelogioGraph extends JFrame {
 
 
 
-		//relogio digital Fuso
-		JLabel relogioDigitalFuso = new JLabel(BuscaHora.getRelogio());
-		relogioDigitalFuso.setHorizontalAlignment(SwingConstants.CENTER);
-		relogioDigitalFuso.setFont(new Font("Tahoma", Font.BOLD, 40));
-		relogioDigitalFuso.setBounds(261, 48, 187, 88);
-
-		contentPane.add(relogioDigitalFuso);
 
 
 
-		JComboBox fusoSelector = fillFusoSelectorOptions();
-		contentPane.add(fusoSelector);
 
-		/*Botão Sobre + Evento "click"*/
+	}
+
+
+
+	public void adicionaBotaoSobre(){
 		JButton btnSobre = new JButton("Sobre");
 		btnSobre.addMouseListener(new MouseAdapter() {
 			@Override
@@ -159,30 +158,16 @@ public class RelogioGraph extends JFrame {
 		btnSobre.setBounds(546, 11, 89, 23);
 		btnSobre.setBounds(546, 11, 89, 23);
 		contentPane.add(btnSobre);
-
-
-		//actualiza o relogio //digital e analogico
-		ActionListener updateClock = new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				//...Tarefas a executar...
-				relogioDigitalLisboa.setText(BuscaHora.getRelogio());
-				ponteirosLisboa.repaint();
-				String nomeDaCidade;
-				nomeDaCidade = fusoSelector.getSelectedItem().toString();
-				relogioDigitalFuso.setText(BuscaHora.getRelogioFuso(nomeDaCidade, FusosHorarios.fusosHorarios));
-			}
-		};
-		Timer t = new Timer(1000,updateClock);
-		t.start();
-
-
-
-
-
-
 	}
 
-	public JPanel desenhaRelogioAnalogicoLisboa(){
+
+	public void desenhaElementos(){
+		JLabel lblLisboa = new JLabel("Lisboa");
+		lblLisboa.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblLisboa.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLisboa.setBounds(43, 15, 114, 23);
+		contentPane.add(lblLisboa);
+
 		JPanel relogioAnalogPanel = new JPanel(){
 			@Override
 			//desenha o relogio (ponteiros sao desenhados no Jpanel ponteiros)
@@ -219,9 +204,27 @@ public class RelogioGraph extends JFrame {
 		JLabel hora6 = new JLabel("6");
 		hora6.setBounds(48, 75, 12, 14);
 		relogioAnalogPanel.add(hora6);
-
-		return relogioAnalogPanel;
+		relogioAnalogPanel.setOpaque(false);
+		contentPane.add(relogioAnalogPanel);
+		adicionaBotaoSobre();
 	}
+
+	public JLabel desenhaRelogioDigitalLisboa(){
+		JLabel relogioDigitalLisboa = new JLabel(BuscaHora.getRelogio());
+		relogioDigitalLisboa.setHorizontalAlignment(SwingConstants.CENTER);
+		relogioDigitalLisboa.setFont(new Font("Tahoma", Font.BOLD, 40));
+		relogioDigitalLisboa.setBounds(10, 48, 187, 88);
+		return relogioDigitalLisboa;
+	}
+
+	public JLabel desenhaRelogioDigitalFuso(){
+		JLabel relogioDigitalFuso = new JLabel(BuscaHora.getRelogio());
+		relogioDigitalFuso.setHorizontalAlignment(SwingConstants.CENTER);
+		relogioDigitalFuso.setFont(new Font("Tahoma", Font.BOLD, 40));
+		relogioDigitalFuso.setBounds(261, 48, 187, 88);
+		return relogioDigitalFuso;
+	}
+
 
 	public JPanel desenhaPonteirosLisboa(){
 		JPanel ponteirosLisboa = new JPanel(){
