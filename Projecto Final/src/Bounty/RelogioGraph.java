@@ -188,25 +188,73 @@ public class RelogioGraph extends JFrame {
 		};
 		relogioAnalogPanel.setBounds(50, 127, 101, 101);
 		relogioAnalogPanel.setLayout(null);
-
+		
 		JLabel hora12 = new JLabel("12");
 		hora12.setBounds(43, 8, 22, 14);
-		relogioAnalogPanel.add(hora12);
+		
 
 		JLabel hora3 = new JLabel("3");
 		hora3.setBounds(85, 43, 12, 14);
-		relogioAnalogPanel.add(hora3);
+		
 
 		JLabel hora9 = new JLabel("9");
 		hora9.setBounds(10, 43, 22, 14);
-		relogioAnalogPanel.add(hora9);
+		
 
 		JLabel hora6 = new JLabel("6");
 		hora6.setBounds(48, 75, 12, 14);
-		relogioAnalogPanel.add(hora6);
+
 		relogioAnalogPanel.setOpaque(false);
+		relogioAnalogPanel.add(hora12);
+		relogioAnalogPanel.add(hora3);
+		relogioAnalogPanel.add(hora9);
+		relogioAnalogPanel.add(hora6);
 		contentPane.add(relogioAnalogPanel);
 		adicionaBotaoSobre();
+		
+		JPanel relogioAnalogFuso = new JPanel(){
+			@Override
+			//desenha o relogio (ponteiros sao desenhados no Jpanel ponteiros)
+			protected void paintComponent(Graphics relogioAnalog) {
+				super.paintComponent(relogioAnalog);
+
+				Graphics2D g2d = (Graphics2D) relogioAnalog;
+				//Circulo
+				g2d.drawOval(0,0,100,100);
+				//Tracinhos das Horas
+				g2d.drawLine(50, 0, 50, 5); //12
+				g2d.drawLine(95, 50, 100, 50); //3
+				g2d.drawLine(50, 95, 50, 100); //6
+				g2d.drawLine(0, 50, 5, 50); //9
+
+
+			}
+		};
+		relogioAnalogFuso.setBounds(307, 127, 101, 101);
+		relogioAnalogFuso.setLayout(null);
+		relogioAnalogFuso.setOpaque(false);
+		
+		JLabel hora12f = new JLabel("12");
+		hora12f.setBounds(43, 8, 22, 14);
+		
+
+		JLabel hora3f = new JLabel("3");
+		hora3f.setBounds(85, 43, 12, 14);
+		
+
+		JLabel hora9f = new JLabel("9");
+		hora9f.setBounds(10, 43, 22, 14);
+		
+
+		JLabel hora6f = new JLabel("6");
+		hora6f.setBounds(48, 75, 12, 14);
+		
+		relogioAnalogFuso.add(hora12f);
+		relogioAnalogFuso.add(hora3f);
+		relogioAnalogFuso.add(hora9f);
+		relogioAnalogFuso.add(hora6f);
+		contentPane.add(relogioAnalogFuso);
+		
 	}
 
 	public JLabel desenhaRelogioDigitalLisboa(){
