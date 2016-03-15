@@ -64,7 +64,7 @@ public class RelogioGraph extends JFrame {
 		/*Janela*/
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 651, 444);
+		setBounds(100, 100, 651, 476);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -112,7 +112,7 @@ public class RelogioGraph extends JFrame {
 
 
 		JTabbedPane tabTarefas = new JTabbedPane(JTabbedPane.TOP);
-		tabTarefas.setBounds(24, 279, 600, 125);
+		tabTarefas.setBounds(23, 249, 600, 187);
 		contentPane.add(tabTarefas);
 
 		JPanel panelTarefas = new JPanel();
@@ -134,8 +134,7 @@ public class RelogioGraph extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				textInsercao.setText(tarefa);
-
-				// falta código
+				Tarefas.tarefas.add(new Tarefas(tarefa,false));				
 				
 			}
 		});
@@ -157,10 +156,11 @@ public class RelogioGraph extends JFrame {
 		textTarefa2.setColumns(10);
 		textTarefa2.setBounds(33, 67, 484, 20);
 		panelTarefas.add(textTarefa2);
-	
-		//textTarefa1.setText(Tarefas.tarefas.get(0).getListaTarefas().toString());
-		//textTarefa2.setText(Tarefas.tarefas.get(1).getListaTarefas().toString());
-
+		
+		Tarefas.listaTarefas();
+		textTarefa1.setText(Tarefas.tarefas.get(0).tarefa);
+		textTarefa2.setText(Tarefas.tarefas.get(1).tarefa);
+		
 		JCheckBox chbxValidar1 = new JCheckBox("");
 		chbxValidar1.setBounds(6, 37, 21, 23);
 		panelTarefas.add(chbxValidar1);
@@ -198,9 +198,9 @@ public class RelogioGraph extends JFrame {
 		textDone2.setBounds(28, 67, 557, 20);
 		panelDone.add(textDone2);
 		
-		//textDone.setText(Tarefas.tarefas.get(0).getListaTarefas().toString());
-		//textDone1.setText(Tarefas.tarefas.get(1).getListaTarefas().toString());
-		//textDone2.setText(Tarefas.tarefas.get(2).getListaTarefas().toString());
+		textDone.setText(Tarefas.tarefas.get(0).tarefa);
+		textDone1.setText(Tarefas.tarefas.get(1).tarefa);
+		textDone2.setText(Tarefas.tarefas.get(2).tarefa);
 		
 		JButton btnRemove1 = new JButton("");
 		btnRemove1.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
