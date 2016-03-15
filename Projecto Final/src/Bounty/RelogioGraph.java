@@ -123,19 +123,20 @@ public class RelogioGraph extends JFrame {
 		chbxValidar.setBounds(6, 7, 21, 23);
 		panelTarefas.add(chbxValidar);
 
-
-		ArrayList<Tarefas> tarefas = new ArrayList<Tarefas>();
-		tarefas.add(new Tarefas("Teste",false));
-		tarefas.add(new Tarefas("Teste1",false));
-		tarefas.add(new Tarefas("Teste2",false));
-
 		JButton btnSave = new JButton("");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnSave.addMouseListener(new MouseAdapter() {
 			String tarefa;
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				textInsercao.setText(tarefa);
-				tarefas.add(new Tarefas(tarefa,false));
+
+				// falta código
+				
 			}
 		});
 		btnSave.setIcon(new ImageIcon(RelogioGraph.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
@@ -157,8 +158,8 @@ public class RelogioGraph extends JFrame {
 		textTarefa2.setBounds(33, 67, 484, 20);
 		panelTarefas.add(textTarefa2);
 	
-		textTarefa1.setText(tarefas.get(0).tarefa);
-		textTarefa2.setText(tarefas.get(1).tarefa);
+		//textTarefa1.setText(Tarefas.tarefas.get(0).getListaTarefas().toString());
+		//textTarefa2.setText(Tarefas.tarefas.get(1).getListaTarefas().toString());
 
 		JCheckBox chbxValidar1 = new JCheckBox("");
 		chbxValidar1.setBounds(6, 37, 21, 23);
@@ -196,12 +197,11 @@ public class RelogioGraph extends JFrame {
 		textDone2.setColumns(10);
 		textDone2.setBounds(28, 67, 557, 20);
 		panelDone.add(textDone2);
-
-
-		textDone.setText(tarefas.get(0).getTarefa());
-		textDone1.setText(tarefas.get(1).getTarefa());
-		textDone2.setText(tarefas.get(2).getTarefa());
-
+		
+		//textDone.setText(Tarefas.tarefas.get(0).getListaTarefas().toString());
+		//textDone1.setText(Tarefas.tarefas.get(1).getListaTarefas().toString());
+		//textDone2.setText(Tarefas.tarefas.get(2).getListaTarefas().toString());
+		
 		JButton btnRemove1 = new JButton("");
 		btnRemove1.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 		btnRemove1.setBounds(10, 39, 15, 17);
