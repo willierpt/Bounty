@@ -123,12 +123,11 @@ public class RelogioGraph extends JFrame {
 		chbxValidar.setBounds(6, 10, 21, 23);
 		panelTarefas.add(chbxValidar);
 
-		// teste
+
 		ArrayList<Tarefas> tarefas = new ArrayList<Tarefas>();
 		tarefas.add(new Tarefas("Teste",false));
 		tarefas.add(new Tarefas("Teste1",false));
 		tarefas.add(new Tarefas("Teste2",false));
-
 
 		JButton btnSave = new JButton("");
 		btnSave.addMouseListener(new MouseAdapter() {
@@ -157,11 +156,9 @@ public class RelogioGraph extends JFrame {
 		textTarefa2.setColumns(10);
 		textTarefa2.setBounds(33, 66, 484, 20);
 		panelTarefas.add(textTarefa2);
-
-		/*for (int i = 0; i < tarefas.size(); i++) {
-			textTarefa1.setText(tarefas.get(tarefas.indexOf(i)).getTarefa());
-			textTarefa2.setText(tarefas.get(tarefas.indexOf(i)).getTarefa());
-		}*/
+	
+		textTarefa1.setText(tarefas.get(0).tarefa);
+		textTarefa2.setText(tarefas.get(1).tarefa);
 
 		JCheckBox chbxValidar1 = new JCheckBox("");
 		chbxValidar1.setBounds(6, 40, 21, 23);
@@ -215,6 +212,7 @@ public class RelogioGraph extends JFrame {
 		panelDone.add(btnRemove2);
 
 	}
+		
 
 
 
