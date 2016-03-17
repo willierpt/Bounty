@@ -13,6 +13,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Window.Type;
+import java.awt.Dialog.ModalExclusionType;
 
 
 public class SobrePopup extends JFrame {
@@ -39,7 +41,8 @@ public class SobrePopup extends JFrame {
 	 * Create the frame.
 	 */
 	public SobrePopup() {
-		setResizable(false);
+		setTitle("Sobre");
+		setType(Type.POPUP);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 218, 300);
 		contentPane = new JPanel();
