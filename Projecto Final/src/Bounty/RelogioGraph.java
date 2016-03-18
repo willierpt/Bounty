@@ -63,6 +63,7 @@ public class RelogioGraph extends JFrame {
 	 * Create the frame.
 	 */
 	public RelogioGraph() {
+		setTitle("Project: Bounty");
 		/*Janela*/
 		Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Bounty/resources/iconrelogio2.jpg"));
 	    setIconImage(image);
