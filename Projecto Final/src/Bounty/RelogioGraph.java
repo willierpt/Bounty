@@ -151,15 +151,7 @@ public class RelogioGraph extends JFrame {
 		textTarefa2 = new JTextField();
 		textTarefa2.setColumns(10);
 		textTarefa2.setBounds(33, 67, 484, 20);
-		panelTarefas.add(textTarefa2);
-		
-		Tarefas.listaTarefas();
-		if (Tarefas.tarefas.size() >=2) {
-			textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-			textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);		
-		}
-
-		
+		panelTarefas.add(textTarefa2);	
 		
 		JCheckBox chbxValidar2 = new JCheckBox("");
 		chbxValidar2.setBounds(6, 67, 21, 23);
@@ -172,7 +164,7 @@ public class RelogioGraph extends JFrame {
 			}
 		});
 		chbxValidar1.setBounds(6, 38, 21, 23);
-		panelTarefas.add(chbxValidar1);		
+		panelTarefas.add(chbxValidar1);
 		
 
 		JPanel panelDone = new JPanel();
@@ -203,14 +195,7 @@ public class RelogioGraph extends JFrame {
 		textDone2.setColumns(10);
 		textDone2.setBounds(28, 67, 557, 20);
 		panelDone.add(textDone2);
-		
-		TarefasConcluidas.listaTarefasConcluidas();
-		if (TarefasConcluidas.tarefasConcluidas.size() >=3) {
-		textDone.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-3).tarefaConcluida);
-		textDone1.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-2).tarefaConcluida);
-		textDone2.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-1).tarefaConcluida);
-		}
-		
+				
 		JButton btnRemove1 = new JButton("");
 		btnRemove1.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 		btnRemove1.setBounds(10, 39, 15, 17);
@@ -221,6 +206,22 @@ public class RelogioGraph extends JFrame {
 		btnRemove2.setBounds(10, 67, 15, 17);
 		panelDone.add(btnRemove2);
 
+		setTarefas();
+	}
+	
+	public void setTarefas(){
+		Tarefas.listaTarefas();
+		if (Tarefas.tarefas.size() >=2) {
+			textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
+			textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);		
+		}
+		
+		TarefasConcluidas.listaTarefasConcluidas();
+		if (TarefasConcluidas.tarefasConcluidas.size() >=3) {
+		textDone.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-3).tarefaConcluida);
+		textDone1.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-2).tarefaConcluida);
+		textDone2.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-1).tarefaConcluida);
+		}	
 	}
 	
 	public void removeTarefa(){
