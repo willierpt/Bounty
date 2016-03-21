@@ -10,18 +10,13 @@ public class Tarefas {
 	public static void listaTarefas(){
 		
 		tarefas.add(new Tarefas("Teste",false));
-		tarefas.add(new Tarefas("Teste1",true));
+		tarefas.add(new Tarefas("Teste1",false));
 		tarefas.add(new Tarefas("Teste2",false));
+		tarefas.add(new Tarefas("Teste3",false));
+		tarefas.add(new Tarefas("Teste4",false));
+		tarefas.add(new Tarefas("Teste5",false));
 		
-	}
-
-	/*public String getTarefa() {
-		return tarefa;
-	}
-
-	public boolean getDone() {
-		return done;
-	}*/
+	}	
 
 	public Tarefas(String tarefa, boolean done) {
 		this.tarefa = tarefa;
