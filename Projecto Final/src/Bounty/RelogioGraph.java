@@ -164,8 +164,7 @@ public class RelogioGraph extends JFrame {
 			}
 		});
 		chbxValidar1.setBounds(6, 38, 21, 23);
-		panelTarefas.add(chbxValidar1);
-		
+		panelTarefas.add(chbxValidar1);		
 
 		JPanel panelDone = new JPanel();
 		tabTarefas.addTab("Done", null, panelDone, null);
@@ -227,7 +226,7 @@ public class RelogioGraph extends JFrame {
 	public void removeTarefa(){
 		String tarefa;
 		tarefa = Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa;
-		TarefasConcluidas.tarefasConcluidas.add(new TarefasConcluidas(tarefa,true));
+		TarefasConcluidas.tarefasConcluidas.add(new TarefasConcluidas(tarefa));
 		Tarefas.tarefas.remove(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
 		//textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
 		//textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);	
@@ -241,7 +240,7 @@ public class RelogioGraph extends JFrame {
 	public void adicionaTarefa(){
 		String tarefa;
 		tarefa = textInsercao.getText();
-		Tarefas.tarefas.add(new Tarefas(tarefa,false));
+		Tarefas.tarefas.add(new Tarefas(tarefa));
 		textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
 		textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);
 		textInsercao.setText("");
