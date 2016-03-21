@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectStreamException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -125,21 +126,11 @@ public class RelogioGraph extends JFrame {
 		panelTarefas.setLayout(null);
 
 		JButton btnSave = new JButton("");
-		btnSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		
 		btnSave.addMouseListener(new MouseAdapter() {
-			String tarefa;
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				tarefa = textInsercao.getText();
-				Tarefas.tarefas.add(new Tarefas(tarefa,false));		
-				textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-				textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);
-				textInsercao.setText("");
+				adicionaTarefa();
 			}
 		});
 		
@@ -168,24 +159,21 @@ public class RelogioGraph extends JFrame {
 			textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);		
 		}
 
+		
+		
 		JCheckBox chbxValidar2 = new JCheckBox("");
 		chbxValidar2.setBounds(6, 67, 21, 23);
 		panelTarefas.add(chbxValidar2);
-		
 		JCheckBox chbxValidar1 = new JCheckBox("");
 		chbxValidar1.addMouseListener(new MouseAdapter() {
-			String tarefa;
 			@Override
-			public void mouseClicked(MouseEvent e) {				
-				tarefa = Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa;
-				Tarefas.tarefas.remove(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-				TarefasConcluidas.tarefasConcluidas.add(new TarefasConcluidas(tarefa,true));
-				textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-				textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);
+			public void mouseClicked(MouseEvent e) {					
+				removeTarefa();
 			}
 		});
 		chbxValidar1.setBounds(6, 38, 21, 23);
-		panelTarefas.add(chbxValidar1);
+		panelTarefas.add(chbxValidar1);		
+		
 
 		JPanel panelDone = new JPanel();
 		tabTarefas.addTab("Done", null, panelDone, null);
@@ -234,8 +222,40 @@ public class RelogioGraph extends JFrame {
 		panelDone.add(btnRemove2);
 
 	}
+	
+	public void removeTarefa(){
+		String tarefa;
+		tarefa = Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa;
+		TarefasConcluidas.tarefasConcluidas.add(new TarefasConcluidas(tarefa,true));
+		Tarefas.tarefas.remove(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
+		//textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
+		//textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);	
+		textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.indexOf(tarefasSize())-1).tarefa);
+		textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.indexOf(tarefasSize())).tarefa);
+		textDone.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-3).tarefaConcluida);
+		textDone1.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-2).tarefaConcluida);
+		textDone2.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-1).tarefaConcluida);
+	}
+	
+	public void adicionaTarefa(){
+		String tarefa;
+		tarefa = textInsercao.getText();
+		Tarefas.tarefas.add(new Tarefas(tarefa,false));
+		textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
+		textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);
+		textInsercao.setText("");
+	}
 		
-
+	public int tarefasSize(){
+		int tarefasSize = Tarefas.tarefas.size();
+		for (int i = 0; i <= Tarefas.tarefas.size(); i++) {
+			if (Tarefas.tarefas.equals("")) {
+				tarefasSize = i;
+				break;
+			}
+		}		
+		return tarefasSize;
+	}		
 
 
 	public void adicionaBotaoSobre(){
