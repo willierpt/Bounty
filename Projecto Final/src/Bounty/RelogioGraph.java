@@ -105,6 +105,7 @@ public class RelogioGraph extends JFrame {
 		 * e
 		 * JLabels
 		 */
+		
 		ActionListener updateClock = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				//...Tarefas a executar...
