@@ -100,9 +100,11 @@ public class RelogioGraph extends JFrame {
 		contentPane.add(ponteirosFuso);
 		/**/
 
-		/*Actualiza Ponteiros
+		/**
+		 * Actualiza Ponteiros
 		 * e
-		 * JLabels*/
+		 * JLabels
+		 */
 		ActionListener updateClock = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				//...Tarefas a executar...
