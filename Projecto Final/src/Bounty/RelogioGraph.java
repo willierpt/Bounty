@@ -132,7 +132,7 @@ public class RelogioGraph extends JFrame {
 		btnSave.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				adicionaTarefa();
+				//adicionaTarefa();
 			}
 		});
 		
@@ -162,7 +162,7 @@ public class RelogioGraph extends JFrame {
 		chbxValidar1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {					
-				removeTarefa();
+				
 			}
 		});
 		chbxValidar1.setBounds(6, 38, 21, 23);
@@ -207,7 +207,7 @@ public class RelogioGraph extends JFrame {
 		btnRemove2.setBounds(10, 67, 15, 17);
 		panelDone.add(btnRemove2);
 		
-		setTarefas();
+	
 	}
 	
 	/*public List<ArrayList<String>> teste(){
@@ -220,7 +220,7 @@ public class RelogioGraph extends JFrame {
 	}*/
 	
 
-	public void setTarefas(){	
+	/*public void setTarefas(){	
 		Tarefas.listaTarefas();
 		if (Tarefas.tarefas.size() >=2) {
 			textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
@@ -234,8 +234,8 @@ public class RelogioGraph extends JFrame {
 		textDone2.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-1).tarefaConcluida);
 		}	
 	}
-	
-	public void removeTarefa(){
+	*/
+	/*public void removeTarefa(){
 		String tarefa;
 		tarefa = Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa;
 		TarefasConcluidas.tarefasConcluidas.add(new TarefasConcluidas(tarefa));
@@ -246,18 +246,18 @@ public class RelogioGraph extends JFrame {
 		textDone.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-3).tarefaConcluida);
 		textDone1.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-2).tarefaConcluida);
 		textDone2.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-1).tarefaConcluida);
-	}
+	}*/
 	
-	public void adicionaTarefa(){
+	/*public void adicionaTarefa(){
 		String tarefa;
 		tarefa = textInsercao.getText();
 		Tarefas.tarefas.add(new Tarefas(tarefa));
 		textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
 		textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);
 		textInsercao.setText("");
-	}
+	}*/
 		
-	public int tarefasSize(){
+	/*public int tarefasSize(){
 		int tarefasSize = Tarefas.tarefas.size();
 		for (int i = 0; i <= Tarefas.tarefas.size(); i++) {
 			if (Tarefas.tarefas.equals("")) {
@@ -266,7 +266,7 @@ public class RelogioGraph extends JFrame {
 			}
 		}		
 		return tarefasSize;
-	}		
+	}		*/
 
 
 	public void adicionaBotaoSobre(){
