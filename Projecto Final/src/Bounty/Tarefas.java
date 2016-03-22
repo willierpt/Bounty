@@ -6,6 +6,18 @@ public class Tarefas {
 	String tarefa;
 	private static ArrayList<String> tarefas = new ArrayList<String>();
 
+	public static void main(String[] args) {
+		preencheLista();
+		for (int i=0;i<getSize();i++){
+			System.out.println(getTarefaIndex(i)+" localizado no indice ["+i+"]");
+		}
+		tarefas.remove(1);
+		System.out.println("--------------------------------------");
+		for (int i=0;i<getSize();i++){
+			System.out.println(getTarefaIndex(i)+" localizado no indice ["+i+"]");
+		}
+	}
+
 
 	public Tarefas(String tarefa) {
 		this.tarefa = tarefa;
@@ -16,6 +28,8 @@ public class Tarefas {
 		tarefas.add("tarefa 1");
 		tarefas.add("tarefa 2");
 		tarefas.add("tarefa 3");
+		tarefas.add("tarefa 4");
+		tarefas.add("tarefa 5");
 	}
 
 	public static void adicionaTarefa(String e){
@@ -24,6 +38,11 @@ public class Tarefas {
 
 	public static String getTarefaIndex(int e){
 		return tarefas.get(e);
+	}
+
+	public static String getLastTarefa(){
+		tarefas.trimToSize();
+		return tarefas.get(getSize()-1);
 	}
 
 	public static int getSize(){
@@ -38,7 +57,7 @@ public class Tarefas {
 				break;
 			}
 		}
-		
+
 		return index;
 	}
 
