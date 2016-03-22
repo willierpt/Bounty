@@ -18,6 +18,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectStreamException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -204,15 +206,25 @@ public class RelogioGraph extends JFrame {
 		btnRemove2.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
 		btnRemove2.setBounds(10, 67, 15, 17);
 		panelDone.add(btnRemove2);
-
+		
 		setTarefas();
 	}
 	
-	public void setTarefas(){
+	/*public List<ArrayList<String>> teste(){
+		List<ArrayList<String>> teste = new ArrayList<ArrayList<String>>();
+		ArrayList<String> a = new ArrayList<String>();
+		ArrayList<String> b = new ArrayList<String>();
+		teste.add(a);
+		teste.add(b);
+		return teste;
+	}*/
+	
+
+	public void setTarefas(){	
 		Tarefas.listaTarefas();
 		if (Tarefas.tarefas.size() >=2) {
 			textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-			textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);		
+			textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);	
 		}
 		
 		TarefasConcluidas.listaTarefasConcluidas();
@@ -228,10 +240,9 @@ public class RelogioGraph extends JFrame {
 		tarefa = Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa;
 		TarefasConcluidas.tarefasConcluidas.add(new TarefasConcluidas(tarefa));
 		Tarefas.tarefas.remove(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-		//textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-		//textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);	
-		textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.indexOf(tarefasSize())-1).tarefa);
-		textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.indexOf(tarefasSize())).tarefa);
+		Tarefas.tarefas.trimToSize();
+		textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
+		textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);	;
 		textDone.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-3).tarefaConcluida);
 		textDone1.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-2).tarefaConcluida);
 		textDone2.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-1).tarefaConcluida);
