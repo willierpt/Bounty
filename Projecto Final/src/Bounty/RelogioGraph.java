@@ -38,18 +38,35 @@ import javax.swing.border.EmptyBorder;
 public class RelogioGraph extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textInsercao;
 	private JTextField textDone;
-	private JTextField textTarefa1;
 	private JTextField textTarefa2;
+	private JTextField textTarefa3;
 	private JTextField textDone1;
 	private JTextField textDone2;
+	private JTextField textTarefa1;
+	private JTextField textTarefa4;
+	private JTextField textTarefa5;
+	private JTextField textTarefa6;
+	private JTextField txtOla;
 
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			Tarefas.loadTarefas();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -61,11 +78,11 @@ public class RelogioGraph extends JFrame {
 			}
 		});
 	}
-	//for the commit delete after
 	/**
 	 * Create the frame.
 	 */
 	public RelogioGraph() {
+		
 		setTitle("Project: Bounty");
 		/*Janela*/
 		Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Bounty/resources/iconrelogio2.jpg"));
@@ -98,6 +115,8 @@ public class RelogioGraph extends JFrame {
 
 		JPanel ponteirosFuso = desenhaPonteirosFuso(fusoSelector);
 		contentPane.add(ponteirosFuso);
+		
+		
 		/**/
 
 		/**
@@ -105,7 +124,6 @@ public class RelogioGraph extends JFrame {
 		 * e
 		 * JLabels
 		 */
-		
 		ActionListener updateClock = new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				//...Tarefas a executar...
@@ -120,156 +138,10 @@ public class RelogioGraph extends JFrame {
 		Timer t = new Timer(1000,updateClock);
 		t.start();
 		/**/
-
-
-		JTabbedPane tabTarefas = new JTabbedPane(JTabbedPane.TOP);
-		tabTarefas.setBounds(23, 249, 600, 187);
-		contentPane.add(tabTarefas);
-
-		JPanel panelTarefas = new JPanel();
-		tabTarefas.addTab("Tarefas", null, panelTarefas, null);
-		panelTarefas.setLayout(null);
-
-		JButton btnSave = new JButton("");
 		
-		btnSave.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				//adicionaTarefa();
-			}
-		});
 		
-		btnSave.setIcon(new ImageIcon(RelogioGraph.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
-		btnSave.setBounds(527, 38, 58, 23);
-		panelTarefas.add(btnSave);
-
-		textInsercao = new JTextField();
-		textInsercao.setBounds(33, 9, 484, 20);
-		panelTarefas.add(textInsercao);
-		textInsercao.setColumns(10);
-
-		textTarefa1 = new JTextField();
-		textTarefa1.setColumns(10);
-		textTarefa1.setBounds(33, 38, 484, 20);
-		panelTarefas.add(textTarefa1);
-
-		textTarefa2 = new JTextField();
-		textTarefa2.setColumns(10);
-		textTarefa2.setBounds(33, 67, 484, 20);
-		panelTarefas.add(textTarefa2);	
-		
-		JCheckBox chbxValidar2 = new JCheckBox("");
-		chbxValidar2.setBounds(6, 67, 21, 23);
-		panelTarefas.add(chbxValidar2);
-		JCheckBox chbxValidar1 = new JCheckBox("");
-		chbxValidar1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {					
-				
-			}
-		});
-		chbxValidar1.setBounds(6, 38, 21, 23);
-		panelTarefas.add(chbxValidar1);		
-
-		JPanel panelDone = new JPanel();
-		tabTarefas.addTab("Done", null, panelDone, null);
-		panelDone.setLayout(null);
-
-		JButton btnRemove = new JButton("");
-		btnRemove.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
-		btnRemove.setBounds(10, 11, 15, 17);
-		panelDone.add(btnRemove);
-
-		textDone = new JTextField();
-		textDone.setEditable(false);
-		textDone.setBounds(28, 9, 557, 20);
-		panelDone.add(textDone);
-		textDone.setColumns(10);		
-
-		textDone1 = new JTextField();
-		textDone1.setText((String) null);
-		textDone1.setEditable(false);
-		textDone1.setColumns(10);
-		textDone1.setBounds(28, 38, 557, 20);
-		panelDone.add(textDone1);
-
-		textDone2 = new JTextField();
-		textDone2.setText((String) null);
-		textDone2.setEditable(false);
-		textDone2.setColumns(10);
-		textDone2.setBounds(28, 67, 557, 20);
-		panelDone.add(textDone2);
-				
-		JButton btnRemove1 = new JButton("");
-		btnRemove1.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
-		btnRemove1.setBounds(10, 39, 15, 17);
-		panelDone.add(btnRemove1);
-
-		JButton btnRemove2 = new JButton("");
-		btnRemove2.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
-		btnRemove2.setBounds(10, 67, 15, 17);
-		panelDone.add(btnRemove2);
-		
-	
 	}
 	
-	/*public List<ArrayList<String>> teste(){
-		List<ArrayList<String>> teste = new ArrayList<ArrayList<String>>();
-		ArrayList<String> a = new ArrayList<String>();
-		ArrayList<String> b = new ArrayList<String>();
-		teste.add(a);
-		teste.add(b);
-		return teste;
-	}*/
-	
-
-	/*public void setTarefas(){	
-		Tarefas.listaTarefas();
-		if (Tarefas.tarefas.size() >=2) {
-			textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-			textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);	
-		}
-		
-		TarefasConcluidas.listaTarefasConcluidas();
-		if (TarefasConcluidas.tarefasConcluidas.size() >=3) {
-		textDone.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-3).tarefaConcluida);
-		textDone1.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-2).tarefaConcluida);
-		textDone2.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-1).tarefaConcluida);
-		}	
-	}
-	*/
-	/*public void removeTarefa(){
-		String tarefa;
-		tarefa = Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa;
-		TarefasConcluidas.tarefasConcluidas.add(new TarefasConcluidas(tarefa));
-		Tarefas.tarefas.remove(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-		Tarefas.tarefas.trimToSize();
-		textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-		textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);	;
-		textDone.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-3).tarefaConcluida);
-		textDone1.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-2).tarefaConcluida);
-		textDone2.setText(TarefasConcluidas.tarefasConcluidas.get(TarefasConcluidas.tarefasConcluidas.size()-1).tarefaConcluida);
-	}*/
-	
-	/*public void adicionaTarefa(){
-		String tarefa;
-		tarefa = textInsercao.getText();
-		Tarefas.tarefas.add(new Tarefas(tarefa));
-		textTarefa1.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-2).tarefa);
-		textTarefa2.setText(Tarefas.tarefas.get(Tarefas.tarefas.size()-1).tarefa);
-		textInsercao.setText("");
-	}*/
-		
-	/*public int tarefasSize(){
-		int tarefasSize = Tarefas.tarefas.size();
-		for (int i = 0; i <= Tarefas.tarefas.size(); i++) {
-			if (Tarefas.tarefas.equals("")) {
-				tarefasSize = i;
-				break;
-			}
-		}		
-		return tarefasSize;
-	}		*/
 
 
 	public void adicionaBotaoSobre(){
@@ -285,8 +157,8 @@ public class RelogioGraph extends JFrame {
 		contentPane.add(btnSobre);
 	}
 
-
 	public void desenhaElementos(){
+
 		JLabel lblLisboa = new JLabel("Lisboa");
 		lblLisboa.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblLisboa.setHorizontalAlignment(SwingConstants.CENTER);
@@ -379,7 +251,156 @@ public class RelogioGraph extends JFrame {
 		relogioAnalogFuso.add(hora9f);
 		relogioAnalogFuso.add(hora6f);
 		contentPane.add(relogioAnalogFuso);
+		
+		
+		
+		/*Elementos da lista de tarefas*/
+		JTabbedPane tabTarefas = new JTabbedPane(JTabbedPane.TOP);
+		tabTarefas.setBounds(23, 249, 600, 187);
+		contentPane.add(tabTarefas);
 
+		JPanel panelTarefas = new JPanel();
+		tabTarefas.addTab("Tarefas", null, panelTarefas, null);
+		panelTarefas.setLayout(null);
+
+		JButton btnSave = new JButton("");
+		btnSave.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+				/*
+				Tarefas.adicionaTarefa(textTarefa1.getText(), 0);
+				Tarefas.adicionaTarefa(textTarefa2.getText(), 1);
+				Tarefas.adicionaTarefa(textTarefa3.getText(), 2);
+				Tarefas.adicionaTarefa(textTarefa4.getText(), 3);
+				Tarefas.adicionaTarefa(textTarefa5.getText(), 4);
+				Tarefas.adicionaTarefa(textTarefa6.getText(), 5);
+				try {
+					Tarefas.gravarTarefas();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}*/
+			}
+		});
+		
+		btnSave.setIcon(new ImageIcon(RelogioGraph.class.getResource("/javax/swing/plaf/metal/icons/ocean/floppy.gif")));
+		btnSave.setBounds(527, 38, 58, 23);
+		panelTarefas.add(btnSave);			
+		
+		textTarefa1 = new JTextField();
+		textTarefa1.setColumns(10);
+		textTarefa1.setBounds(32, 11, 485, 20);
+		panelTarefas.add(textTarefa1);
+		//textTarefa1.setColumns(10);
+		textTarefa1.setText("OLA");
+
+		textTarefa2 = new JTextField();
+		textTarefa2.setColumns(10);
+		textTarefa2.setBounds(32, 32, 484, 20);
+		panelTarefas.add(textTarefa2);
+
+		textTarefa3 = new JTextField();
+		textTarefa3.setColumns(10);
+		textTarefa3.setBounds(33, 53, 484, 20);
+		panelTarefas.add(textTarefa3);	
+		
+		textTarefa4 = new JTextField();
+		textTarefa4.setBounds(32, 76, 484, 20);
+		panelTarefas.add(textTarefa4);
+		textTarefa4.setColumns(10);
+		
+		textTarefa5 = new JTextField();
+		textTarefa5.setBounds(32, 99, 484, 20);
+		panelTarefas.add(textTarefa5);
+		textTarefa5.setColumns(10);
+		
+		textTarefa6 = new JTextField();
+		textTarefa6.setBounds(31, 121, 484, 20);
+		panelTarefas.add(textTarefa6);
+		textTarefa6.setColumns(10);
+		
+		
+		try {
+			Tarefas.loadTarefas();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		fillTextTarefasFromSave();
+		
+		JCheckBox chbxValidar1 = new JCheckBox("");
+		chbxValidar1.setBounds(7, 9, 21, 23);
+		panelTarefas.add(chbxValidar1);	
+
+		JCheckBox chbxValidar2 = new JCheckBox("");
+		chbxValidar2.setBounds(7, 28, 21, 23);
+		panelTarefas.add(chbxValidar2);
+		
+		JCheckBox chbxValidar3 = new JCheckBox("");
+		chbxValidar3.setBounds(7, 50, 21, 23);
+		panelTarefas.add(chbxValidar3);
+		
+		JCheckBox chbxValidar4 = new JCheckBox("");
+		chbxValidar4.setBounds(7, 73, 21, 23);
+		panelTarefas.add(chbxValidar4);
+		
+		JCheckBox chbxValidar5 = new JCheckBox("");
+		chbxValidar5.setBounds(7, 96, 22, 23);
+		panelTarefas.add(chbxValidar5);
+		
+		JCheckBox chbxValidar6 = new JCheckBox("");
+		chbxValidar6.setBounds(7, 120, 21, 23);
+		panelTarefas.add(chbxValidar6);
+
+		JPanel panelDone = new JPanel();
+		tabTarefas.addTab("Done", null, panelDone, null);
+		panelDone.setLayout(null);
+
+		JButton btnRemove = new JButton("");
+		btnRemove.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
+		btnRemove.setBounds(10, 11, 15, 17);
+		panelDone.add(btnRemove);
+
+		textDone = new JTextField();
+		textDone.setEditable(false);
+		textDone.setBounds(28, 9, 557, 20);
+		panelDone.add(textDone);
+		textDone.setColumns(10);		
+
+		textDone1 = new JTextField();
+		textDone1.setText((String) null);
+		textDone1.setEditable(false);
+		textDone1.setColumns(10);
+		textDone1.setBounds(28, 38, 557, 20);
+		panelDone.add(textDone1);
+
+		textDone2 = new JTextField();
+		textDone2.setText((String) null);
+		textDone2.setEditable(false);
+		textDone2.setColumns(10);
+		textDone2.setBounds(28, 67, 557, 20);
+		panelDone.add(textDone2);
+				
+		JButton btnRemove1 = new JButton("");
+		btnRemove1.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
+		btnRemove1.setBounds(10, 39, 15, 17);
+		panelDone.add(btnRemove1);
+
+		JButton btnRemove2 = new JButton("");
+		btnRemove2.setIcon(new ImageIcon(RelogioGraph.class.getResource("/com/sun/javafx/scene/control/skin/caspian/dialog-error.png")));
+		btnRemove2.setBounds(10, 67, 15, 17);
+		panelDone.add(btnRemove2);
 	}
 
 	public JLabel desenhaRelogioDigitalLisboa(){
@@ -476,5 +497,16 @@ public class RelogioGraph extends JFrame {
 			fusoSelector.addItem(FusosHorarios.fusosHorarios.get(i).cidade);
 		}
 		return fusoSelector;
+	}
+	
+	private void fillTextTarefasFromSave(){
+		
+		textTarefa1.setText(Tarefas.getTarefaIndex(0));
+		textTarefa2.setText(Tarefas.getTarefaIndex(1));
+		textTarefa3.setText(Tarefas.getTarefaIndex(2));
+		textTarefa4.setText(Tarefas.getTarefaIndex(3));
+		textTarefa5.setText(Tarefas.getTarefaIndex(4));
+		textTarefa6.setText(Tarefas.getTarefaIndex(5));
+	
 	}
 }
