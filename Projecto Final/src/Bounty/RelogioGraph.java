@@ -21,6 +21,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -30,6 +31,10 @@ import javax.swing.border.EmptyBorder;
 
 public class RelogioGraph extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textDone;
 	private JTextField textTarefa2;
@@ -175,15 +180,15 @@ public class RelogioGraph extends JFrame {
 		textTarefa6 = new JTextField();
 		textTarefa1.setBounds(32, 11, 485, 20);
 		panelTarefas.add(textTarefa1);
-		textTarefa2.setBounds(32, 32, 484, 20);
+		textTarefa2.setBounds(32, 36, 484, 20);
 		panelTarefas.add(textTarefa2);
-		textTarefa3.setBounds(33, 53, 484, 20);
+		textTarefa3.setBounds(32, 61, 484, 20);
 		panelTarefas.add(textTarefa3);	
-		textTarefa4.setBounds(32, 76, 484, 20);
+		textTarefa4.setBounds(32, 86, 484, 20);
 		panelTarefas.add(textTarefa4);
-		textTarefa5.setBounds(32, 99, 484, 20);
+		textTarefa5.setBounds(32, 111, 484, 20);
 		panelTarefas.add(textTarefa5);
-		textTarefa6.setBounds(31, 121, 484, 20);
+		textTarefa6.setBounds(32, 136, 484, 20);
 		panelTarefas.add(textTarefa6);
 		
 		//Checkboxes
@@ -193,27 +198,30 @@ public class RelogioGraph extends JFrame {
 		JCheckBox chbxValidar4 = new JCheckBox("");
 		JCheckBox chbxValidar5 = new JCheckBox("");
 		JCheckBox chbxValidar6 = new JCheckBox("");
-		chbxValidar1.setBounds(7, 9, 21, 23);
+		chbxValidar1.setBounds(7, 10, 21, 23);
 		panelTarefas.add(chbxValidar1);	
-		chbxValidar2.setBounds(7, 28, 21, 23);
+		chbxValidar2.setBounds(7, 36, 21, 23);
 		panelTarefas.add(chbxValidar2);
-		chbxValidar3.setBounds(7, 50, 21, 23);
+		chbxValidar3.setBounds(7, 60, 21, 23);
 		panelTarefas.add(chbxValidar3);
-		chbxValidar4.setBounds(7, 73, 21, 23);
+		chbxValidar4.setBounds(7, 83, 21, 23);
 		panelTarefas.add(chbxValidar4);
-		chbxValidar5.setBounds(7, 96, 22, 23);
+		chbxValidar5.setBounds(7, 108, 22, 23);
 		panelTarefas.add(chbxValidar5);
-		chbxValidar6.setBounds(7, 120, 21, 23);
+		chbxValidar6.setBounds(7, 133, 21, 23);
 		panelTarefas.add(chbxValidar6);
-		//for comit
+		
+		JScrollPane tarefasConcluidas = new JScrollPane();
+		tabTarefas.addTab("Concluido", null, tarefasConcluidas, null);
+		
+		JLabel areaTextoTarefasConcluidas = new JLabel();
+		tarefasConcluidas.setViewportView(areaTextoTarefasConcluidas);
+		areaTextoTarefasConcluidas.setText(fillTarefasDone());
+	
 		//First Load
 		fillTextTarefasFromSave();
-		
-		//Painel Done
-		JPanel panelDone = new JPanel();
-		tabTarefas.addTab("Concluido", null, panelDone, null);
-		panelDone.setLayout(null);
 
+		
 		//Ações
 		btnSave.addMouseListener(new MouseAdapter() {
 			@Override
@@ -279,6 +287,12 @@ public class RelogioGraph extends JFrame {
 				textTarefa6.setText("");
 				saveTarefastoFile();
 				chbxValidar6.setSelected(false);
+			}
+		});
+		panelTarefas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseExited(MouseEvent e) {
+				areaTextoTarefasConcluidas.setText(fillTarefasDone());
 			}
 		});
 	}
@@ -476,6 +490,20 @@ public class RelogioGraph extends JFrame {
 		return fusoSelector;
 	}
 	
+	private String fillTarefasDone(){
+		try {
+			TarefasConcluidas.loadTarefas();
+		} catch (ClassNotFoundException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String s = "<html>";
+		for (int i=0;i<TarefasConcluidas.tarefasConcluidas.size();i++){
+			s += TarefasConcluidas.getTarefa(i) + "<br>";
+		}
+		s+="</html>";
+		return s;
+	}
 	
 	private void saveTarefastoFile(){
 		Tarefas.adicionaTarefa(textTarefa1.getText(), 0);
@@ -490,7 +518,14 @@ public class RelogioGraph extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			TarefasConcluidas.gravarTarefas();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
+	
 	
 	private void fillTextTarefasFromSave(){
 		try {

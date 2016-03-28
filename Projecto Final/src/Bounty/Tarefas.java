@@ -1,5 +1,6 @@
 package Bounty;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -81,6 +82,7 @@ public class Tarefas {
 		ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
 		outputStream.writeObject(tarefas);
 		outputStream.close();
+		
 	}
 
 	public static void loadTarefas() throws IOException, ClassNotFoundException{
@@ -96,6 +98,16 @@ public class Tarefas {
 			outputStream.writeObject(tarefas);
 			outputStream.close();
 		}
-
+		try {
+			hide(new File("tarefas.bin"));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private static void hide(File src) throws InterruptedException, IOException {
+	    // win32 command line variant
+	    Process p = Runtime.getRuntime().exec("attrib +h " + src.getPath());
+	    p.waitFor(); // p.waitFor() important, so that the file really appears as hidden immediately after function exit.
 	}
 }
