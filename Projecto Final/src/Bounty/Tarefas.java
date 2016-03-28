@@ -12,8 +12,15 @@ public class Tarefas {
 	public static String[] tarefas = new String[6];
 
 	public static void main(String[] args) {
-		
-		
+		try {
+			loadTarefas();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public Tarefas(String tarefa) {
@@ -76,12 +83,19 @@ public class Tarefas {
 		outputStream.close();
 	}
 
-	public static void loadTarefas() throws FileNotFoundException, IOException, ClassNotFoundException{
+	public static void loadTarefas() throws IOException, ClassNotFoundException{
 		String filename = "tarefas.bin";
-		ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename)); 
-		String[] x = (String[])inputStream.readObject();
-		inputStream.close();
-		tarefas = x;
+		ObjectInputStream inputStream;
+		try {
+			inputStream = new ObjectInputStream(new FileInputStream(filename));
+			String[] x = (String[])inputStream.readObject();
+			inputStream.close();
+			tarefas = x;
+		} catch (FileNotFoundException e) {
+			ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
+			outputStream.writeObject(tarefas);
+			outputStream.close();
+		}
 
 	}
 }

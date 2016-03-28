@@ -47,12 +47,6 @@ public class FusosHorarios implements Serializable {
 		this.diferencaHoraria = diferencaHoraria;
 	}
 
-	/*public String getCidade(){
-		return cidade;
-	}
-	public int getDiferencaHoraria(){
-		return diferencaHoraria;
-	}*/
 
 	public ArrayList<FusosHorarios> getListaFusos(){
 		return fusosHorarios;
