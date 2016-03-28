@@ -10,7 +10,7 @@ public class BuscaHora {
 
 
 	public static void main(String[] args) {
-		//System.out.print(getRelogio());
+		//for comit
 		ArrayList<FusosHorarios> fusosHorarios = new ArrayList<FusosHorarios>();
 		fusosHorarios.add(new FusosHorarios("Lisboa",0));
 		fusosHorarios.add(new FusosHorarios("Tokio",10));

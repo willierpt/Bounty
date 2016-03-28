@@ -26,7 +26,7 @@ public class Tarefas {
 	public Tarefas(String tarefa) {
 		this.tarefa = tarefa;
 
-	}
+	}//for comit
 
 	public static void preencheListaTeste(){
 		for(int i=0;i<tarefas.length;i++){

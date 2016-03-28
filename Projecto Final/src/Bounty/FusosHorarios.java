@@ -17,7 +17,7 @@ public class FusosHorarios implements Serializable {
 	static ArrayList<FusosHorarios> fusosHorarios = new ArrayList<FusosHorarios>();
 
 	public static void listaFusos(){
-	
+		//for comit
 		fusosHorarios.add(new FusosHorarios("Lisboa",0));
 		fusosHorarios.add(new FusosHorarios("Tokio",10));
 		fusosHorarios.add(new FusosHorarios("New York",-5));

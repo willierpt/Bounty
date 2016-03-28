@@ -20,7 +20,7 @@ import java.awt.Dialog.ModalExclusionType;
 public class SobrePopup extends JFrame {
 
 	private JPanel contentPane;
-
+	//for comit
 	/**
 	 * Launch the application.
 	 */

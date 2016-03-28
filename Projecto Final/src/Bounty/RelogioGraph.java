@@ -205,7 +205,7 @@ public class RelogioGraph extends JFrame {
 		panelTarefas.add(chbxValidar5);
 		chbxValidar6.setBounds(7, 120, 21, 23);
 		panelTarefas.add(chbxValidar6);
-		
+		//for comit
 		//First Load
 		fillTextTarefasFromSave();
 		
