@@ -40,7 +40,6 @@ public class RelogioGraph extends JFrame {
 	private JTextField textTarefa4;
 	private JTextField textTarefa5;
 	private JTextField textTarefa6;
-	private JTextField txtOla;
 
 
 	/**

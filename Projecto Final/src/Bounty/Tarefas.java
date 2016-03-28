@@ -6,27 +6,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Arrays;
 
 public class Tarefas {
 	String tarefa;
-	private static String[] tarefas = new String[6];
+	public static String[] tarefas = new String[6];
 
 	public static void main(String[] args) {
 		
-		try {
-			tarefas = loadTarefas();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(getTarefaIndex(0));
+		
 	}
 
 	public Tarefas(String tarefa) {
@@ -55,7 +42,7 @@ public class Tarefas {
 
 	public static int getIndexTarefa(String e){
 		try {
-			tarefas = loadTarefas();
+			loadTarefas();
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -89,12 +76,12 @@ public class Tarefas {
 		outputStream.close();
 	}
 
-	public static String[] loadTarefas() throws FileNotFoundException, IOException, ClassNotFoundException{
+	public static void loadTarefas() throws FileNotFoundException, IOException, ClassNotFoundException{
 		String filename = "tarefas.bin";
 		ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename)); 
 		String[] x = (String[])inputStream.readObject();
 		inputStream.close();
-		return x;
+		tarefas = x;
 
 	}
 }
