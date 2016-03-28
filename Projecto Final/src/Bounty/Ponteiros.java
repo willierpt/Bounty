@@ -19,6 +19,7 @@ public class Ponteiros {
 
 		System.out.println("coord X = " + getCoordXfromGraus(graus,raio,centroX));
 		System.out.println("coord Y = " + getCoordYfromGraus(graus,raio,centroY));
+		in.close();
 	}
 
 	public static int getCoordXfromGraus(double graus, double raio,double centroX){

@@ -24,6 +24,7 @@ public class FusosHorarios implements Serializable {
 		fusosHorarios.add(new FusosHorarios("Açores",-1));
 		fusosHorarios.add(new FusosHorarios("Madrid",1));
 		fusosHorarios.add(new FusosHorarios("Sydney",10));
+		fusosHorarios.add(new FusosHorarios("Paris",1));
 
 		
 		
