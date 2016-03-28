@@ -142,67 +142,6 @@ public class RelogioGraph extends JFrame {
 				SobrePopup.main(null);
 			}
 		});
-		JPanel ponteirosLisboa = new JPanel(){
-			@Override
-			//Desenha os ponteiros
-			protected void paintComponent(Graphics relogioAnalog) {
-				super.paintComponent(relogioAnalog);
-
-				Graphics2D g2d = (Graphics2D) relogioAnalog;
-				int grau;
-
-				/* Função getCoord
-				 * Ponteiros.getCoordPonteiro(graus, raio, centroX, centroY)
-				 * */
-
-				/*draw Horas*/
-				grau = Ponteiros.getGrausFromHora();
-				g2d.drawLine(50, 50, Ponteiros.getCoordXfromGraus(grau, 20, 50), Ponteiros.getCoordYfromGraus(grau, 25, -50));
-
-				/*draw Minutos*/
-				grau = Ponteiros.getGrausFromMinuto();
-				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 35, 50),(Ponteiros.getCoordYfromGraus(grau, 35, -50)));
-
-				/*draw Segundos*/
-				grau= Ponteiros.getGrausFromSegundo();
-				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 40, 50),(Ponteiros.getCoordYfromGraus(grau, 40, -50)));
-
-			}
-		};
-		ponteirosLisboa.setBounds(51, 128, 100, 100);
-		ponteirosLisboa.setOpaque(false);
-		return ponteirosLisboa;
-		JPanel ponteirosfuso = new JPanel(){
-			@Override
-			//Desenha os ponteiros
-			protected void paintComponent(Graphics relogioAnalog) {
-				super.paintComponent(relogioAnalog);
-
-				Graphics2D g2d = (Graphics2D) relogioAnalog;
-				int grau;
-
-				/* Função getCoord
-				 * Ponteiros.getCoordPonteiro(graus, raio, centroX, centroY)
-				 * */
-
-				/*draw Horas*/
-				grau = Ponteiros.getGrausFromHoraFuso(fusoSelector.getSelectedItem().toString(), FusosHorarios.fusosHorarios);
-
-				g2d.drawLine(50, 50, Ponteiros.getCoordXfromGraus(grau, 20, 50), Ponteiros.getCoordYfromGraus(grau, 25, -50));
-
-				/*draw Minutos*/
-				grau = Ponteiros.getGrausFromMinuto();
-				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 35, 50),(Ponteiros.getCoordYfromGraus(grau, 35, -50)));
-
-				/*draw Segundos*/
-				grau= Ponteiros.getGrausFromSegundo();
-				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 40, 50),(Ponteiros.getCoordYfromGraus(grau, 40, -50)));
-
-			}
-		};
-		ponteirosfuso.setBounds(307, 128, 100, 100);
-		ponteirosfuso.setOpaque(false);
-		return ponteirosfuso;
 		btnSobre.setBounds(546, 11, 89, 23);
 		btnSobre.setBounds(546, 11, 89, 23);
 		contentPane.add(btnSobre);
@@ -473,9 +412,70 @@ public class RelogioGraph extends JFrame {
 
 
 	public JPanel desenhaPonteirosFuso(JComboBox fusoSelector){
+		JPanel ponteirosfuso = new JPanel(){
+			@Override
+			//Desenha os ponteiros
+			protected void paintComponent(Graphics relogioAnalog) {
+				super.paintComponent(relogioAnalog);
+
+				Graphics2D g2d = (Graphics2D) relogioAnalog;
+				int grau;
+
+				/* Função getCoord
+				 * Ponteiros.getCoordPonteiro(graus, raio, centroX, centroY)
+				 * */
+
+				/*draw Horas*/
+				grau = Ponteiros.getGrausFromHoraFuso(fusoSelector.getSelectedItem().toString(), FusosHorarios.fusosHorarios);
+
+				g2d.drawLine(50, 50, Ponteiros.getCoordXfromGraus(grau, 20, 50), Ponteiros.getCoordYfromGraus(grau, 25, -50));
+
+				/*draw Minutos*/
+				grau = Ponteiros.getGrausFromMinuto();
+				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 35, 50),(Ponteiros.getCoordYfromGraus(grau, 35, -50)));
+
+				/*draw Segundos*/
+				grau= Ponteiros.getGrausFromSegundo();
+				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 40, 50),(Ponteiros.getCoordYfromGraus(grau, 40, -50)));
+
+			}
+		};
+		ponteirosfuso.setBounds(307, 128, 100, 100);
+		ponteirosfuso.setOpaque(false);
+		return ponteirosfuso;
 	}
 
 	public JPanel desenhaPonteirosLisboa(){
+		JPanel ponteirosLisboa = new JPanel(){
+			@Override
+			//Desenha os ponteiros
+			protected void paintComponent(Graphics relogioAnalog) {
+				super.paintComponent(relogioAnalog);
+
+				Graphics2D g2d = (Graphics2D) relogioAnalog;
+				int grau;
+
+				/* Função getCoord
+				 * Ponteiros.getCoordPonteiro(graus, raio, centroX, centroY)
+				 * */
+
+				/*draw Horas*/
+				grau = Ponteiros.getGrausFromHora();
+				g2d.drawLine(50, 50, Ponteiros.getCoordXfromGraus(grau, 20, 50), Ponteiros.getCoordYfromGraus(grau, 25, -50));
+
+				/*draw Minutos*/
+				grau = Ponteiros.getGrausFromMinuto();
+				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 35, 50),(Ponteiros.getCoordYfromGraus(grau, 35, -50)));
+
+				/*draw Segundos*/
+				grau= Ponteiros.getGrausFromSegundo();
+				g2d.drawLine(50, 50,Ponteiros.getCoordXfromGraus(grau, 40, 50),(Ponteiros.getCoordYfromGraus(grau, 40, -50)));
+
+			}
+		};
+		ponteirosLisboa.setBounds(51, 128, 100, 100);
+		ponteirosLisboa.setOpaque(false);
+		return ponteirosLisboa;
 	}
 
 	public JComboBox<String> fillFusoSelectorOptions(){
