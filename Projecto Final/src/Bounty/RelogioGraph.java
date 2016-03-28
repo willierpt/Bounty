@@ -1,6 +1,7 @@
 package Bounty;
 
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -11,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Ellipse2D;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -109,7 +111,41 @@ public class RelogioGraph extends JFrame {
 		contentPane.add(relogioDigitalLisboa);
 		contentPane.add(fusoSelector);
 		contentPane.add(ponteirosFuso);
+		
+		JPanel painelDesenho = new JPanel(){
+			@Override
+			//desenha o relogio (ponteiros sao desenhados no Jpanel ponteiros)
+			protected void paintComponent(Graphics relogioAnalog) {
+				super.paintComponent(relogioAnalog);
 
+				Graphics2D g2d = (Graphics2D) relogioAnalog;
+				g2d.setColor(Color.LIGHT_GRAY);
+			    g2d.fillOval(0,0,100,100);
+				
+
+			}
+		};
+		painelDesenho.setBounds(50, 127, 101, 101);
+		contentPane.add(painelDesenho);
+		painelDesenho.setOpaque(false);
+
+		JPanel painelDesenho2 = new JPanel(){
+			@Override
+			//desenha o relogio (ponteiros sao desenhados no Jpanel ponteiros)
+			protected void paintComponent(Graphics relogioAnalog) {
+				super.paintComponent(relogioAnalog);
+
+				Graphics2D g2d = (Graphics2D) relogioAnalog;
+				g2d.setColor(Color.LIGHT_GRAY);
+			    g2d.fillOval(0,0,100,100);
+				
+
+			}
+		};
+		painelDesenho2.setBounds(307, 127, 101, 101);
+		contentPane.add(painelDesenho2);
+		painelDesenho2.setOpaque(false);
+		
 		/**/
 
 		/**
@@ -319,12 +355,13 @@ public class RelogioGraph extends JFrame {
 				g2d.drawLine(95, 50, 100, 50); //3
 				g2d.drawLine(50, 95, 50, 100); //6
 				g2d.drawLine(0, 50, 5, 50); //9
-
+				
 
 			}
 		};
 		relogioAnalogPanel.setBounds(50, 127, 101, 101);
 		relogioAnalogPanel.setLayout(null);
+		relogioAnalogPanel.setOpaque(false);
 
 		JLabel hora12 = new JLabel("12");
 		hora12.setBounds(43, 8, 22, 14);
@@ -340,15 +377,16 @@ public class RelogioGraph extends JFrame {
 
 		JLabel hora6 = new JLabel("6");
 		hora6.setBounds(48, 75, 12, 14);
-
-		relogioAnalogPanel.setOpaque(false);
 		relogioAnalogPanel.add(hora12);
 		relogioAnalogPanel.add(hora3);
 		relogioAnalogPanel.add(hora9);
 		relogioAnalogPanel.add(hora6);
 		contentPane.add(relogioAnalogPanel);
+		
 		adicionaBotaoSobre();
 
+		
+		
 		JPanel relogioAnalogFuso = new JPanel(){
 			@Override
 			//desenha o relogio (ponteiros sao desenhados no Jpanel ponteiros)
