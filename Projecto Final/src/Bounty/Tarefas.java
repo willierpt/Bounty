@@ -78,7 +78,7 @@ public class Tarefas {
 	}
 
 	public static void gravarTarefas() throws FileNotFoundException, IOException{
-		String filename = "tarefas.bin";
+		File filename = new File("tarefas.bin");
 		ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
 		outputStream.writeObject(tarefas);
 		outputStream.close();
@@ -86,7 +86,9 @@ public class Tarefas {
 	}
 
 	public static void loadTarefas() throws IOException, ClassNotFoundException{
-		String filename = "tarefas.bin";
+		
+		
+		File filename = new File("tarefas.bin");
 		ObjectInputStream inputStream;
 		try {
 			inputStream = new ObjectInputStream(new FileInputStream(filename));
@@ -94,20 +96,9 @@ public class Tarefas {
 			inputStream.close();
 			tarefas = x;
 		} catch (FileNotFoundException e) {
-			ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
-			outputStream.writeObject(tarefas);
-			outputStream.close();
+			gravarTarefas();
 		}
-		try {
-			hide(new File("tarefas.bin"));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
-	private static void hide(File src) throws InterruptedException, IOException {
-	    // win32 command line variant
-	    Process p = Runtime.getRuntime().exec("attrib +h " + src.getPath());
-	    p.waitFor(); // p.waitFor() important, so that the file really appears as hidden immediately after function exit.
-	}
+	
 }

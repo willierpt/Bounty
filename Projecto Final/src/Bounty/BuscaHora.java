@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 
 public class BuscaHora {
 
-
+	static BuscaHora tempo = new BuscaHora();
 
 	public static void main(String[] args) {
 		//for comit
@@ -16,14 +16,14 @@ public class BuscaHora {
 		fusosHorarios.add(new FusosHorarios("Tokio",10));
 		fusosHorarios.add(new FusosHorarios("New York",-5));
 		fusosHorarios.add(new FusosHorarios("Açores",-1));
-		getRelogioFuso("Tokio",fusosHorarios);
+		tempo.getRelogioFuso("Tokio",fusosHorarios);
 	}
 
-	public static String getRelogio(){
+	public String getRelogio(){
 		int hora,minuto,segundo;
-		hora = obtemHora();
-		minuto = obtemMinuto();
-		segundo = obtemSegundo();
+		hora = tempo.obtemHora();
+		minuto = tempo.obtemMinuto();
+		segundo = tempo.obtemSegundo();
 		String relogio = String.format("%02d:%02d:%02d",hora,minuto,segundo);
 		//String relogio = hora+":"+minuto+":"+segundo;
 
@@ -33,7 +33,7 @@ public class BuscaHora {
 		return relogio;
 	}
 
-	public static int getHoraFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
+	public int getHoraFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
 		int diferenca = 0;
 		
 		//diferenca = fusosHorarios.get(fusosHorarios.indexOf(cidade)).diferencaHoraria;
@@ -54,17 +54,17 @@ public class BuscaHora {
 		return hora;
 	}
 
-	public static String getRelogioFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
+	public String getRelogioFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
 
-		int hora = getHoraFuso(cidade,fusosHorarios);
-		int minuto = obtemMinuto();
-		int segundo = obtemSegundo();
+		int hora = tempo.getHoraFuso(cidade,fusosHorarios);
+		int minuto = tempo.obtemMinuto();
+		int segundo = tempo.obtemSegundo();
 
 		String relogio = String.format("%02d:%02d:%02d",hora,minuto,segundo);
 		return relogio;
 	}
 
-	public static int obtemHora(){
+	public int obtemHora(){
 		int hora;
 		Date data = new Date();
 		Calendar calendar = GregorianCalendar.getInstance();
@@ -72,7 +72,7 @@ public class BuscaHora {
 		hora = calendar.get(Calendar.HOUR_OF_DAY);
 		return hora;
 	}
-	public static int obtemMinuto(){
+	public int obtemMinuto(){
 		int min;
 		Date data = new Date();
 		Calendar calendar = GregorianCalendar.getInstance();
@@ -80,7 +80,7 @@ public class BuscaHora {
 		min = calendar.get(Calendar.MINUTE);
 		return min;
 	}
-	public static int obtemSegundo(){
+	public int obtemSegundo(){
 		int sec;
 		Date data = new Date();
 		Calendar calendar = GregorianCalendar.getInstance();

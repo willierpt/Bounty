@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ponteiros {
-
+	static BuscaHora tempo = new BuscaHora();
 	public static void main(String[] args) {
 		Scanner in	= new Scanner(System.in);
 		System.out.println("--Circunferencia de raio 1--");
@@ -31,8 +31,9 @@ public class Ponteiros {
 	}
 
 	public static int getGrausFromHoraFuso(Object cidade, ArrayList<FusosHorarios> fusos){
-		int hora = BuscaHora.getHoraFuso(cidade, fusos);
-		int minuto = BuscaHora.obtemMinuto();
+		
+		int hora = tempo.getHoraFuso(cidade, fusos);
+		int minuto = tempo.obtemMinuto();
 		if (hora > 12){
 			hora -= 12;
 		}
@@ -40,8 +41,8 @@ public class Ponteiros {
 	}
 
 	public static int getGrausFromHora(){
-		int hora = BuscaHora.obtemHora();
-		int minuto = BuscaHora.obtemMinuto();
+		int hora = tempo.obtemHora();
+		int minuto = tempo.obtemMinuto();
 		if (hora > 12){
 			hora -= 12;
 		}
@@ -49,11 +50,11 @@ public class Ponteiros {
 	}
 
 	public static int getGrausFromMinuto(){
-		return (-1*(6*BuscaHora.obtemMinuto()))+90;
+		return (-1*(6*tempo.obtemMinuto()))+90;
 	}
 
 	public static int getGrausFromSegundo(){
-		return (-1*(6*BuscaHora.obtemSegundo()))+90;
+		return (-1*(6*tempo.obtemSegundo()))+90;
 	}
 
 

@@ -30,16 +30,6 @@ public class FusosHorarios implements Serializable {
 		
 	}
 
-	//stackoverflow.com/questions/16111496
-	/*@SuppressWarnings("unchecked")
-	public static void listaFusos() throws IOException, ClassNotFoundException{
-		FileInputStream fis;
-		
-		fis = new FileInputStream("src/Bounty/resources/fusohorarios.dat");
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		fusosHorarios = (ArrayList<FusosHorarios>) ois.readObject();
-		ois.close();
-	}*/
 	
 	
 	public FusosHorarios(String cidade, int diferencaHoraria){

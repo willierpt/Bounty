@@ -72,27 +72,14 @@ public class TarefasConcluidas implements Serializable{
 			ois.close();
 		}
 		catch (FileNotFoundException e) {
-			FileOutputStream fos = new FileOutputStream("tarefasDone.bin");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(tarefasConcluidas);
-			oos.close();
-			
-			try {
-				hide(new File("tarefasDone.bin"));
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			gravarTarefas();
+
 			
 		}
 		
 
 	}
 	
-	private static void hide(File src) throws InterruptedException, IOException {
-	    // win32 command line variant
-	    Process p = Runtime.getRuntime().exec("attrib +h " + src.getPath());
-	    p.waitFor(); // p.waitFor() important, so that the file really appears as hidden immediately after function exit.
-	}
+	
 
 }
