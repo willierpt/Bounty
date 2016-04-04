@@ -35,7 +35,7 @@ public class BuscaHora {
 
 	public int getHoraFuso(Object cidade, ArrayList<FusosHorarios> fusosHorarios){
 		int diferenca = 0;
-		
+
 		//diferenca = fusosHorarios.get(fusosHorarios.indexOf(cidade)).diferencaHoraria;
 
 		for (int i = 0; i<fusosHorarios.size();i++){

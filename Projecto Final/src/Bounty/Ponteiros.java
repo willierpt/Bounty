@@ -31,7 +31,7 @@ public class Ponteiros {
 	}
 
 	public static int getGrausFromHoraFuso(Object cidade, ArrayList<FusosHorarios> fusos){
-		
+
 		int hora = tempo.getHoraFuso(cidade, fusos);
 		int minuto = tempo.obtemMinuto();
 		if (hora > 12){

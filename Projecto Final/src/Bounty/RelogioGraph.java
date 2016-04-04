@@ -49,7 +49,7 @@ public class RelogioGraph extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
+
 		//Load Ficheiro Tarefas
 		try {
 			Tarefas.loadTarefas();
@@ -63,7 +63,7 @@ public class RelogioGraph extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		//New Thread 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -80,11 +80,11 @@ public class RelogioGraph extends JFrame {
 	 * Create the frame.
 	 */
 	public RelogioGraph() {
-		
-		setTitle("Project: Bounty");
+
+		setTitle("Project:Bounty");
 		/*Janela*/
 		Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Bounty/resources/iconrelogio2.jpg"));
-	    setIconImage(image);
+		setIconImage(image);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 651, 476);
@@ -97,7 +97,7 @@ public class RelogioGraph extends JFrame {
 		/*Desenha Elementos Fixos
 		 * e
 		 *Adiciona Elementos que vão actualizar*/
-		
+
 		JPanel ponteirosLisboa = desenhaPonteirosLisboa();
 		JLabel relogioDigitalFuso = desenhaRelogioDigitalFuso();
 		JLabel relogioDigitalLisboa = desenhaRelogioDigitalLisboa();
@@ -110,7 +110,7 @@ public class RelogioGraph extends JFrame {
 		contentPane.add(ponteirosFuso);
 		desenhaElementos();
 		desenhaPainelTarefas();
-		
+
 		/**/
 
 		/**
@@ -125,7 +125,7 @@ public class RelogioGraph extends JFrame {
 				relogioDigitalLisboa.setText(tempo.getRelogio()); 
 				//Actualiza ponteirosLisboa
 				ponteirosLisboa.repaint(); 
-				 //Actualiza ponteirosFuso
+				//Actualiza ponteirosFuso
 				ponteirosFuso.repaint();
 				//Actualiza JLabel relogioDigitalFuso
 				relogioDigitalFuso.setText(tempo.getRelogioFuso(fusoSelector.getSelectedItem().toString(), FusosHorarios.fusosHorarios));
@@ -135,7 +135,7 @@ public class RelogioGraph extends JFrame {
 		Timer t = new Timer(1000,updateClock);
 		t.start();
 		/**/
-		
+
 	}
 
 	public void adicionaBotaoSobre(){
@@ -156,14 +156,14 @@ public class RelogioGraph extends JFrame {
 		JTabbedPane tabTarefas = new JTabbedPane(JTabbedPane.TOP);
 		JPanel panelTarefas = new JPanel();
 		JScrollPane tarefasConcluidas = new JScrollPane();
-		
+
 		tabTarefas.setBounds(23, 249, 600, 187);
 		panelTarefas.setLayout(null);
-		
+
 		tabTarefas.addTab("Tarefas", null, panelTarefas, null);
 		tabTarefas.addTab("Concluido", null, tarefasConcluidas, null);
 		contentPane.add(tabTarefas);
-		
+
 		/*Conteudos panelTarefas*/
 		//Botão Save
 		JButton btnSave = new JButton("");
@@ -197,7 +197,7 @@ public class RelogioGraph extends JFrame {
 		panelTarefas.add(textTarefa4);
 		panelTarefas.add(textTarefa5);
 		panelTarefas.add(textTarefa6);
-		
+
 		//Checkboxes
 		JCheckBox chbxValidar1 = new JCheckBox("");
 		JCheckBox chbxValidar2 = new JCheckBox("");
@@ -217,7 +217,7 @@ public class RelogioGraph extends JFrame {
 		panelTarefas.add(chbxValidar4);
 		panelTarefas.add(chbxValidar5);
 		panelTarefas.add(chbxValidar6);
-		
+
 		//Conteudo tarefasConcluidas
 		JLabel areaTextoTarefasConcluidas = new JLabel();
 		tarefasConcluidas.setViewportView(areaTextoTarefasConcluidas);
@@ -226,7 +226,7 @@ public class RelogioGraph extends JFrame {
 		//First Load tabTarefas
 		fillTextTarefasFromSave();
 
-		
+
 		/*Ações*/
 		//Ação Botão Save
 		btnSave.addMouseListener(new MouseAdapter() {
@@ -310,7 +310,7 @@ public class RelogioGraph extends JFrame {
 			}
 		});
 	}
-	
+
 	public void desenhaElementos(){
 		//Label Lisboa
 		JLabel lblLisboa = new JLabel("Lisboa");
@@ -334,14 +334,14 @@ public class RelogioGraph extends JFrame {
 				g2d.drawLine(95, 50, 100, 50); //3
 				g2d.drawLine(50, 95, 50, 100); //6
 				g2d.drawLine(0, 50, 5, 50); //9
-				
+
 
 			}
 		};
 		relogioAnalogPanel.setBounds(50, 127, 101, 101);
 		relogioAnalogPanel.setLayout(null);
 		relogioAnalogPanel.setOpaque(false);
-		
+
 		//Labels das Horas
 		JLabel hora12 = new JLabel("12");
 		hora12.setBounds(43, 8, 22, 14);
@@ -356,10 +356,10 @@ public class RelogioGraph extends JFrame {
 		relogioAnalogPanel.add(hora9);
 		relogioAnalogPanel.add(hora6);
 		contentPane.add(relogioAnalogPanel);
-		
+
 		//Chama o metodo que adiciona o Botao Sobre -> Na minha opinião é um desenho por isso está aqui :)
 		adicionaBotaoSobre();
-		
+
 		//Desenha elementos do relogio 
 		JPanel relogioAnalogFuso = new JPanel(){
 			@Override
@@ -394,7 +394,7 @@ public class RelogioGraph extends JFrame {
 		relogioAnalogFuso.add(hora9f);
 		relogioAnalogFuso.add(hora6f);
 		contentPane.add(relogioAnalogFuso);
-		
+
 		//Fundo "light_gray" do Relogio
 		JPanel painelDesenho = new JPanel(){
 			@Override
@@ -404,15 +404,15 @@ public class RelogioGraph extends JFrame {
 
 				Graphics2D g2d = (Graphics2D) relogioAnalog;
 				g2d.setColor(Color.LIGHT_GRAY);
-			    g2d.fillOval(0,0,100,100);
-				
+				g2d.fillOval(0,0,100,100);
+
 
 			}
 		};
 		painelDesenho.setBounds(50, 127, 101, 101);
 		contentPane.add(painelDesenho);
 		painelDesenho.setOpaque(false);
-		
+
 		//Fundo "light_gray" do Relogio
 		JPanel painelDesenho2 = new JPanel(){
 			@Override
@@ -421,13 +421,13 @@ public class RelogioGraph extends JFrame {
 				super.paintComponent(relogioAnalog);
 				Graphics2D g2d = (Graphics2D) relogioAnalog;
 				g2d.setColor(Color.LIGHT_GRAY);
-			    g2d.fillOval(0,0,100,100);
+				g2d.fillOval(0,0,100,100);
 			}
 		};
 		painelDesenho2.setBounds(307, 127, 101, 101);
 		contentPane.add(painelDesenho2);
 		painelDesenho2.setOpaque(false);
-		
+
 	}
 
 	public JLabel desenhaRelogioDigitalLisboa(){
@@ -525,7 +525,7 @@ public class RelogioGraph extends JFrame {
 		}
 		return fusoSelector;
 	}
-	
+
 	private String fillTarefasDone(){
 		try {
 			TarefasConcluidas.loadTarefas();
@@ -540,7 +540,7 @@ public class RelogioGraph extends JFrame {
 		s+="</html>";
 		return s;
 	}
-	
+
 	private void saveTarefastoFile(){
 		Tarefas.adicionaTarefa(textTarefa1.getText(), 0);
 		Tarefas.adicionaTarefa(textTarefa2.getText(), 1);
@@ -559,8 +559,8 @@ public class RelogioGraph extends JFrame {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	private void fillTextTarefasFromSave(){
 		try {
 			Tarefas.loadTarefas();
@@ -573,6 +573,6 @@ public class RelogioGraph extends JFrame {
 		textTarefa4.setText(Tarefas.getTarefaIndex(3));
 		textTarefa5.setText(Tarefas.getTarefaIndex(4));
 		textTarefa6.setText(Tarefas.getTarefaIndex(5));
-	
+
 	}
 }

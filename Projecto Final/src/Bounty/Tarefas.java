@@ -82,12 +82,12 @@ public class Tarefas {
 		ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename));
 		outputStream.writeObject(tarefas);
 		outputStream.close();
-		
+
 	}
 
 	public static void loadTarefas() throws IOException, ClassNotFoundException{
-		
-		
+
+
 		File filename = new File("tarefas.bin");
 		ObjectInputStream inputStream;
 		try {
@@ -98,7 +98,7 @@ public class Tarefas {
 		} catch (FileNotFoundException e) {
 			gravarTarefas();
 		}
-		
+
 	}
-	
+
 }

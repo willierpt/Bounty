@@ -61,7 +61,7 @@ public class TarefasConcluidas implements Serializable{
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
 		oos.writeObject(tarefasConcluidas);
 		oos.close();
-		
+
 	}
 
 	public static void loadTarefas() throws IOException, ClassNotFoundException{
@@ -74,12 +74,12 @@ public class TarefasConcluidas implements Serializable{
 		catch (FileNotFoundException e) {
 			gravarTarefas();
 
-			
+
 		}
-		
+
 
 	}
-	
-	
+
+
 
 }
