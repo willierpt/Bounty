@@ -13,8 +13,6 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Window.Type;
-import java.awt.Dialog.ModalExclusionType;
 
 
 public class SobrePopup extends JFrame {
